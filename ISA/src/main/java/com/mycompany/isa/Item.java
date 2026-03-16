@@ -10,4 +10,9 @@ package com.mycompany.isa;
  */
 public class Item {
     
+    private String title;
+    private String language;
+    private Member donatedBy;
+    private Member onLoanTo;
+    
 }
