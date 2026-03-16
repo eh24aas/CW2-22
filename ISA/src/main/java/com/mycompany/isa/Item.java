@@ -33,5 +33,9 @@ public class Item {
         this.language = language;
     }
     
+    public void loanTo(Member borrower){ ///unsure - this seems reasonable
+        this.onLoanTo = borrower;
+    }
+    
 }
 
