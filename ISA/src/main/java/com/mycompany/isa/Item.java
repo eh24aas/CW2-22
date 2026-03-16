@@ -37,5 +37,13 @@ public class Item {
         this.onLoanTo = borrower;
     }
     
+    public boolean isAvailable(){ //unsure - this may need another look
+        if (this.onLoanTo == null){ //if not on loan (onLoanTo = Null)
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
 
