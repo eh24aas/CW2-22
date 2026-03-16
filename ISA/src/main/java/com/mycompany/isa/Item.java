@@ -20,5 +20,11 @@ public class Item {
         this.language = language;
         this.donatedBy = donatedBy;
     }
+    
+    public String getTitle(){
+        return this.title;
+    }
+    
+    
 }
 
