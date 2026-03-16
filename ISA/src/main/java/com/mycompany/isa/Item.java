@@ -53,5 +53,9 @@ public class Item {
         return this.donatedBy;
     }
     
+    public void clearDonator() { //unsure if attribute should be null
+        this.donatedBy = null;
+    }
+    
 }
 
