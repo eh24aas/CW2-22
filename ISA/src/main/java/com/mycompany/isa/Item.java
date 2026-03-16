@@ -15,4 +15,10 @@ public class Item {
     private Member donatedBy;
     private Member onLoanTo;
     
+    public Item(String title, String language, Member donatedBy) {
+        this.title = title;
+        this.language = language;
+        this.donatedBy = donatedBy;
+    }
 }
+
