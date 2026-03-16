@@ -45,5 +45,9 @@ public class Item {
         }
     }
     
+    public void returnLoan(){ //unsure - see above for reasoning
+        this.onLoanTo = null;
+    }
+    
 }
 
