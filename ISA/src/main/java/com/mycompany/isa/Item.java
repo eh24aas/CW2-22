@@ -49,5 +49,9 @@ public class Item {
         this.onLoanTo = null;
     }
     
+    public Member getDonator() {
+        return this.donatedBy;
+    }
+    
 }
 
