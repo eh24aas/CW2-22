@@ -18,9 +18,15 @@ public class Collection {
     };
     
     
-    public void addBook(){}
+    public void addBook(String title, String author, Member donator, String language, String isbn){
+        Book book = new Book(title, author, donator, language, isbn);
+        items.add(book);
+    }
     
-    public void addDVD(){}
+    public void addDVD(String title, String director, Member donatedBy, String language, String[] audioLanguages){
+        DVD dvd = new DVD(title, director, donatedBy, language, audioLanguages);
+        items.add(dvd);
+    }
     
     public Item getItem(String title){
         for (Item item: items){
