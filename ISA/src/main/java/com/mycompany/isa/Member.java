@@ -47,4 +47,32 @@ public class Member {
     public void setEmail(String email){
         this.email = email;
     }
+    
+    public int getDonatedQty(){
+        return this.donatedQty;
+    }
+    
+    public int borrowingQty(){
+        return borrowing.size();
+    }
+    
+    public ArrayList<Item> getLoanItems(){
+    
+    }
+    
+    public void lend (Item item){
+    
+    }
+    
+    public void addDonation(){
+    
+    }
+    
+    public void returnItem(Item item){
+    
+    }
+    
+    public String toString(){
+    
+    }
 }
