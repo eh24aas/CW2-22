@@ -49,7 +49,7 @@ public class Member {
     }
     
     public int getDonatedQty(){
-        return donatedQty;
+        return this.donatedQty;
     }
     
     public int borrowingQty(){
@@ -57,6 +57,22 @@ public class Member {
     }
     
     public ArrayList<Item> getLoanItems(){
-        return borrowing;
+        return this.borrowing;
+    }
+    
+    public void lend (Item item){
+    
+    }
+    
+    public void addDonation(){
+    
+    }
+    
+    public void returnItem(Item item){
+    
+    }
+    
+    public String toString(){
+    
     }
 }
