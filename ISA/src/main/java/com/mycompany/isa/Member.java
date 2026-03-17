@@ -17,4 +17,34 @@ public class Member {
     private String email;
     private int donatedQty;
     private ArrayList<Item> borrowing;
+    
+    public Member(String name, String address, String email){
+        this.name = name;
+        this.address = address;
+        this.email = email;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
+    
+    public String getAddress(){
+        return this.address;
+    }
+    
+    public String getEmail(){
+        return this.email;
+    }
+    
+    public void setName(String name){
+        return this.name;
+    }
+    
+    public void setAddress(String address){
+        return this.address;
+    }
+    
+    public void setEmail(){
+        return this.email;
+    }
 }
