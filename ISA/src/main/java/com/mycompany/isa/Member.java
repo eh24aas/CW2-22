@@ -5,10 +5,16 @@
  */
 package com.mycompany.isa;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author elean
  */
 public class Member {
-    
+    private String name;
+    private String address;
+    private String email;
+    private int donatedQty;
+    private ArrayList<Item> borrowing;
 }
