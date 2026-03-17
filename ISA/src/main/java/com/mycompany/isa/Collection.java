@@ -22,16 +22,24 @@ public class Collection {
     
     public void addDVD(){}
     
-    public Item getItem(){}
+    public Item getItem(String title){
+        for (Item item: items){
+            if (item.getTitle().equals(title)){
+                return item;
+            }
+        }
+        return null;
+    }
     
     public ArrayList<Item> searchItems(String searchTerm){
-        String lowSearchTerm = searchTerm.toLowerCase();
+        /*String lowSearchTerm = searchTerm.toLowerCase();
         ArrayList<Item> foundItems = new ArrayList<Item>();
         
         int i = 0;
         while (i < items.size()){
-            Item currentItem
-        }
+            Item currentItem*/
+        return null;
+        
     }
     
     public void removeItem(Item item){
