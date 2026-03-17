@@ -9,6 +9,16 @@ package com.mycompany.isa;
  *
  * @author elean
  */
-public class DVD {
+public class DVD extends Item{
+    
+    private String director;
+    private String[] audioLanguages;
+    
+    public DVD (String title, String director, Member donatedBy, String Language, String[] audioLanguages) {
+        super(language, title, donatedBy);
+        this.audioLanguages = audioLanguages[];
+        this.director = director;
+    }
+   
     
 }
