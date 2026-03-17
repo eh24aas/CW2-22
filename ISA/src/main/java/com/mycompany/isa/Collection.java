@@ -29,21 +29,6 @@ public class Collection {
         while (i < items.size()){
             Item currentItem
         }
-        /*String lowTitle = title.toLowerCase();
-        ArrayList<Song> foundSongs = new ArrayList();
-
-        int i = 0;
-        while (i < songs.size()){
-            Song current = songs.get(i);
-            String currentTitle = current.getTitle();
-            String lowCurrentTitle = currentTitle.toLowerCase();
-            if (lowCurrentTitle.contains(lowTitle)){
-                foundSongs.add(current);
-            }
-            i = i + 1;
-        }
-        
-       return foundSongs;   */
     }
     
     public void removeItem(Item item){
