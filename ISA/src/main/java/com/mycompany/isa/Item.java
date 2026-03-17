@@ -8,7 +8,7 @@ package com.mycompany.isa;
  *
  * @author elean
  */
-public class Item {
+abstract class Item {
     
     private String title;
     private String language;
