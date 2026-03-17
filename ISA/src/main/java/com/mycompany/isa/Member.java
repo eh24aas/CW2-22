@@ -25,38 +25,26 @@ public class Member {
     }
     
     public String getName(){
-        return name;
+        return this.name;
     }
     
     public String getAddress(){
-        return address;
+        return this.address;
     }
     
     public String getEmail(){
-        return email;
+        return this.email;
     }
     
     public void setName(String name){
-        this.name = name;
+        return this.name;
     }
     
     public void setAddress(String address){
-        this.address = address;
+        return this.address;
     }
     
-    public void setEmail(String email){
-        this.email = email;
-    }
-    
-    public int getDonatedQty(){
-        return donatedQty;
-    }
-    
-    public int borrowingQty(){
-        return borrowing.size();
-    }
-    
-    public ArrayList<Item> getLoanItem(){
-        return borrowing;
+    public void setEmail(){
+        return this.email;
     }
 }
