@@ -8,6 +8,9 @@ package com.mycompany.isa;
  *
  * @author elean
  */
-public class Book {
+public class Book extends Item{
+    
+    private String author;
+    private String isbn;
     
 }
