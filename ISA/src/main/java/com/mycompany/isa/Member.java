@@ -37,14 +37,26 @@ public class Member {
     }
     
     public void setName(String name){
-        return this.name;
+        this.name = name;
     }
     
     public void setAddress(String address){
-        return this.address;
+        this.address = address;
     }
     
-    public void setEmail(){
-        return this.email;
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
+    public int getDonatedQty(){
+        return donatedQty;
+    }
+    
+    public int borrowingQty(){
+        return borrowing.size();
+    }
+    
+    public ArrayList<Item> getLoanItems(){
+        return borrowing;
     }
 }
