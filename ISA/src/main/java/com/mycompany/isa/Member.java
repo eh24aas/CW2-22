@@ -73,6 +73,6 @@ public class Member {
     }
     
     public String toString(){
-    
+        return "0";
     }
 }
