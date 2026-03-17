@@ -21,7 +21,32 @@ public class Collection {
     
     public Item getItem(){}
     
-    public ArrayList<Item> searchItems(){}
+    public ArrayList<Item> searchItems(String searchTerm){
+        String lowSearchTerm = searchTerm.toLowerCase();
+        ArrayList<Item> foundItems = new ArrayList<Item>();
+        
+        int i = 0;
+        while (i < items.size()){
+            Item currentItem
+        }
+        /*String lowTitle = title.toLowerCase();
+        ArrayList<Song> foundSongs = new ArrayList();
+
+        int i = 0;
+        while (i < songs.size()){
+            Song current = songs.get(i);
+            String currentTitle = current.getTitle();
+            String lowCurrentTitle = currentTitle.toLowerCase();
+            if (lowCurrentTitle.contains(lowTitle)){
+                foundSongs.add(current);
+            }
+            i = i + 1;
+        }
+        
+       return foundSongs;   */
+    }
     
-    public void removeItem(){}
+    public void removeItem(Item item){
+        items.remove(item);
+    }
 }
