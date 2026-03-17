@@ -57,5 +57,9 @@ public class Item {
         this.donatedBy = null;
     }
     
+    public String getLanguage(){
+        return this.language;
+    }
+    
 }
 
