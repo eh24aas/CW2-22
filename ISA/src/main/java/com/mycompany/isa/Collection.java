@@ -32,13 +32,13 @@ public class Collection {
     }
     
     public ArrayList<Item> searchItems(String searchTerm){
-        /*String lowSearchTerm = searchTerm.toLowerCase();
-        ArrayList<Item> foundItems = new ArrayList<Item>();
         
-        int i = 0;
-        while (i < items.size()){
-            Item currentItem*/
-        return null;
+        for (Item item:items){
+            if(item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
+                items.add(item);
+            }
+        }
+        return items;
         
     }
     
