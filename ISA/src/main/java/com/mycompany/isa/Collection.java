@@ -13,7 +13,10 @@ import java.util.ArrayList;
 public class Collection {
     private ArrayList<Item> items;
     
-    public Collection(){};
+    public Collection(){
+    items = new ArrayList<>();
+    };
+    
     
     public void addBook(){}
     
