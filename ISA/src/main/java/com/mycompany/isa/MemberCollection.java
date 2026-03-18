@@ -13,5 +13,11 @@ public class MemberCollection {
     
     private ArrayList<Member> members;
     
+    public MemberCollection(){
+        
+    }
     
+    public static void addMember(String name, String address, String email){
+        
+    }
 }
