@@ -24,10 +24,6 @@ public class Member {
         this.email = email;
     }
     
-    public String getName(){
-        return this.name;
-    }
-    
     public String getAddress(){
         return this.address;
     }
