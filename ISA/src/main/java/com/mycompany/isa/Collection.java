@@ -38,10 +38,12 @@ public class Collection {
     }
     
     public ArrayList<Item> searchItems(String searchTerm){
-        
+        String lowSearchTerm = searchTerm.toLowerCase();
+        ArrayList<Item> foundItems = new ArrayList<Item>();
         for (Item item:items){
-            if(item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
-                items.add(item);
+            String currentItemsTitle = item.getTitle().toLowerCase();
+            if (currentItemsTitle.contains(lowSearchTerm)){
+                foundItems.add(item);
             }
         }
         return items;
