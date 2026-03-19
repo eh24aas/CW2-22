@@ -24,6 +24,11 @@ public class Member {
         this.email = email;
     }
     
+    public String getTestingName(){
+        return this.name;
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    }
+    
     public String getAddress(){
         return this.address;
     }
