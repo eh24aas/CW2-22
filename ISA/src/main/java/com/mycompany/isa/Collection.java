@@ -46,7 +46,7 @@ public class Collection {
                 foundItems.add(item);
             }
         }
-        return items;
+        return foundItems;
         
     }
     
