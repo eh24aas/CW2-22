@@ -16,7 +16,9 @@ import java.io.IOException;
  * @author elean
  */
 public class ISA {
-
+    
+    public static boolean isRunning = true;
+    
     public static void main(String[] args) {
         System.out.println("Hello World!");
         
@@ -44,6 +46,66 @@ public class ISA {
         }
         
         
+        Scanner input = new Scanner(System.in);
+        while (isRunning){
+            System.out.println(); 
+            System.out.println(); 
+            System.out.println("***** Main Menu *****");                        
+            System.out.println(); 
+            System.out.println("Please choose a number from the following:");
+            System.out.println("Press 1 to ...");
+            System.out.println("Press 2 to ...");
+            System.out.println("Press 3 to ...");
+            System.out.println("Press 4 to ...");
+            System.out.println("Press 5 to exit");
+            System.out.print("Enter your choice here: ");
+      
+            String choice = input.next();
+            
+            if (!isValidInput("12345", choice)){
+                printForInvalid();
+            }
+            else{
+                switch(choice){
+                    //cases 12345 etc...
+                    
+                    
+                    
+                    case "5": 
+                        exit();
+                        break;
+                }
+            }
+        }
         
     }
+    
+    //methods
+    
+    public static void exit(){
+        System.out.println("application closing...");
+        isRunning = false;   
+    }
+    
+    
+    /* takes a string of what the accepted options are (for example the main menu
+    should only accept "12345"), and a string of what the user entered, then checks
+    whether their input is in the accepted string or not. Returns true if it is, and
+    false if it isn't */
+    public static boolean isValidInput(String validOptions, String entered){
+        boolean accepted = true;
+        
+        if (!validOptions.contains(entered)){
+            accepted = false;
+        }     
+        
+        return accepted;
+    }
+    
+    public static void printForInvalid(){
+        System.out.println();
+        System.out.println("Please choose a *valid* option!");
+        System.out.println(); 
+    }
+    
 }
