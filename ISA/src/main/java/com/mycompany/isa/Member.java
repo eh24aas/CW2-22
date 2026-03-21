@@ -61,15 +61,15 @@ public class Member {
     }
     
     public void lend (Item item){
-    
+        this.borrowing.add(item);
     }
     
     public void addDonation(){
-    
+        this.donatedQty = this.donatedQty + 1;
     }
     
     public void returnItem(Item item){
-    
+        this.borrowing.remove(item);
     }
     
     public String toString(){
