@@ -4,7 +4,9 @@
 
 package com.mycompany.isa;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -33,7 +35,6 @@ public class ISA {
         
         
         //testing 
-        
         Member m1 = new Member("name1","add1","e1");
         Member m2 = new Member("name2","add2","e2");
         
@@ -68,7 +69,8 @@ public class ISA {
             else{
                 switch(choice){
                     //cases 12345 etc...
-                    
+                    case "1":
+                        System.out.println("");
                     
                     
                     case "5": 
