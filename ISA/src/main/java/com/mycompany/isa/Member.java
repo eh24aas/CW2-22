@@ -73,6 +73,6 @@ public class Member {
     }
     
     public String toString(){
-        return "0";
+        return "Member|" + name + "|" + address + "|" + email + "|" + donatedQty;      
     }
 }
