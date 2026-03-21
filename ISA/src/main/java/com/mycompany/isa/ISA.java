@@ -33,7 +33,6 @@ public class ISA {
             System.out.println("file not found");
         }
         
-        
         //testing 
         Member m1 = new Member("name1","add1","e1");
         Member m2 = new Member("name2","add2","e2");
@@ -54,7 +53,7 @@ public class ISA {
             System.out.println("***** Main Menu *****");                        
             System.out.println(); 
             System.out.println("Please choose a number from the following:");
-            System.out.println("Press 1 to ...");
+            System.out.println("Press 1 to member function");
             System.out.println("Press 2 to ...");
             System.out.println("Press 3 to ...");
             System.out.println("Press 4 to ...");
@@ -70,8 +69,30 @@ public class ISA {
                 switch(choice){
                     //cases 12345 etc...
                     case "1":
-                        System.out.println("");
+                        System.out.println("Please choose a number from the following:");
+                        System.out.println("Press 1 to add member");
+                        System.out.print("Enter your choice here: ");
+      
+                        String choice_1 = input.next();
+            
+                        if (!isValidInput("12345", choice)){
+                            printForInvalid();}
+                        else{
+                            switch(choice_1){
+                                case "1":
+                                    System.out.print("Type the new member name: ");
+                                    String name = input.nextLine();
+                                    System.out.print("Type the new member address: ");
+                                    String address = input.nextLine();
+                                    System.out.print("Type the new member email: ");
+                                    String email = input.nextLine();
+                                    collection.addMember(name, address, email);
+                                case "2":
+                                     System.out.println("0");
                     
+                            }
+                        }
+                        
                     
                     case "5": 
                         exit();
