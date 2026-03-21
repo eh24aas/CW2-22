@@ -23,11 +23,12 @@ public class ISA {
     
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        File file = new File("input-1.dat");
         
-        
-        try (Scanner scanner  = new Scanner(new File("input-1.dat"))) {
+        try (Scanner scanner  = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                System.out.println(scanner.nextLine());
+                String data = scanner.nextLine();
+                System.out.println(data);
             }
         }   catch (IOException o){
             System.out.println("file not found");
