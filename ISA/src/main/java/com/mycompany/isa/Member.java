@@ -22,6 +22,7 @@ public class Member {
         this.name = name;
         this.address = address;
         this.email = email;
+        this.donatedQty = 0;
     }
     
     public String getName(){
