@@ -22,29 +22,43 @@ public class ISA {
     public static boolean isRunning = true;
     
     public static void main(String[] args) {
+        Collection item = new Collection();
+        MemberCollection collection = new MemberCollection();
+        
         System.out.println("Hello World!");
         File file = new File("input-1.dat");
+        Member m1 = new Member("name1","add1","e1");
+        Member m2 = new Member("name2","add2","e2");
         
         try (Scanner scanner  = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 System.out.println(data);
+                String[] part = data.split("\\|");
+                System.out.println(part[0]);
+                if (part[0].equals("DVD")){
+                    String[] audioLanguage = part[4].split("\\|");
+                    item.addDVD(part[1], part[3], m1, part[2], audioLanguage);
+                }
+                else if (part[0].equals("Book")){
+                    item.addBook(part[1], part[2], m2, part[4], part[3]);
+                }
+                else if (part[0].equals("Member")){
+                    collection.addMember(part[1], part[2], part[3]);
+                }
             }
         }   catch (IOException o){
             System.out.println("file not found");
         }
         
         //testing 
-        Member m1 = new Member("name1","add1","e1");
-        Member m2 = new Member("name2","add2","e2");
-        
-        MemberCollection collection = new MemberCollection();
         
         collection.addMember("john cena","64 zoo lane","js@gmail.com");
         
         for (Member member: collection.getMembers()){
             System.out.println(member.getName());
         }
+        
         
         
         Scanner input = new Scanner(System.in);
