@@ -37,7 +37,7 @@ public class ISA {
                 
                 if (part[0].equals("Member")){
                     currentMember = new Member(part[1], part[2], part[3]);
-                    members.addMember(currentMember);
+                    members.addMember(part[1], part[2], part[3]);
                 }
                 else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
@@ -76,6 +76,8 @@ public class ISA {
     
     public static void main(String[] args) {
         
+        System.out.println("Hello world!");
+        
         //readFile("input-1.dat");
         Collection ISAitems = new Collection();
         MemberCollection ISAmembers = new MemberCollection();
@@ -93,11 +95,8 @@ public class ISA {
         
         initFile(ISAitems,ISAmembers,"input-1.dat");
         
-        for (Item item : ISAitems.getItems()){
-            if (item instanceof DVD){
-            System.out.println(item.toString());
-        }
-        }
+        
+        
         
         /*try (Scanner scanner  = new Scanner(file)) {
             while (scanner.hasNextLine()) {
@@ -122,13 +121,7 @@ public class ISA {
         */
         //testing 
         
-        ISAmembers.addMember("john cena","64 zoo lane","js@gmail.com");
-        
-        
-        for (Member member: ISAmembers.getMembers()){
-            System.out.println(member.getName());
-        }
-        System.out.println(ISAitems.getItem("精武門"));
+        System.out.println("");
         
      
         
@@ -222,3 +215,4 @@ public class ISA {
     }
     
 }
+
