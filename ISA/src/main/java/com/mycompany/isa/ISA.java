@@ -7,6 +7,7 @@ package com.mycompany.isa;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -21,9 +22,11 @@ public class ISA {
     
     public static boolean isRunning = true;
     
+    
     public static void initFile(Collection items, MemberCollection members, String fileName){
         //this encapsulates the init of the file items neatly in a separate function
         File file = new File(fileName);
+        Member currentMember = null;
         Member m1 = new Member("name1","add1","e1");
         Member m2 = new Member("name2","add2","e2");
         
@@ -33,16 +36,19 @@ public class ISA {
                 //System.out.println(data);
                 String[] part = data.split("\\|");
                 //System.out.println(part[0]);
-                if (part[0].equals("DVD")){
+                
+                if (part[0].equals("Member")){
+                    currentMember = new Member(part[1], part[2], part[3]);
+                    members.addMember(currentMember);
+                }
+                else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
-                    items.addDVD(part[1], part[3], m1, part[2], audioLanguage);
+                    items.addDVD(part[1], part[3], currentMember, part[2], audioLanguage);
                 }
                 else if (part[0].equals("Book")){
-                    items.addBook(part[1], part[2], m2, part[4], part[3]);
+                    items.addBook(part[1], part[2], currentMember, part[4], part[3]);
                 }
-                else if (part[0].equals("Member")){
-                    members.addMember(part[1], part[2], part[3]);
-                }
+             
             }
         }   catch (IOException o){
             System.out.println("file not found");
@@ -51,7 +57,28 @@ public class ISA {
         
         }
     
+    public static void saveToFile(Collection items, MemberCollection members, String fileName){
+        File saveFile = new File(fileName);
+        
+    }
+    
+    public static void readFile(String fileName){
+        //test function to read in a file
+        File file = new File(fileName);
+        
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()){
+            String line = scanner.nextLine();
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+                System.out.println("bleh");
+                }
+    }
+    
     public static void main(String[] args) {
+        
+        readFile("input-1.dat");
         Collection ISAitems = new Collection();
         MemberCollection ISAmembers = new MemberCollection();
         
@@ -62,6 +89,12 @@ public class ISA {
         
         
         initFile(ISAitems,ISAmembers,"input-1.dat");
+        
+        for (Item item : ISAitems.getItems()){
+            if (item instanceof DVD){
+            System.out.println(item.toString());
+        }
+        }
         
         /*try (Scanner scanner  = new Scanner(file)) {
             while (scanner.hasNextLine()) {
