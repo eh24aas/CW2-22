@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 
 
@@ -21,6 +22,9 @@ import java.io.IOException;
 public class ISA {
     
     public static boolean isRunning = true;
+    
+    //global scanner for user input
+    public static Scanner sc = new Scanner(System.in);
     
     
     public static void initFile(Collection items, MemberCollection members, String fileName){
@@ -56,7 +60,13 @@ public class ISA {
         }
     
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
-        File saveFile = new File(fileName);
+        
+        try {PrintWriter writer = new PrintWriter(fileName);
+                
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        }
+        
         
     }
     
@@ -81,51 +91,9 @@ public class ISA {
         //readFile("input-1.dat");
         Collection ISAitems = new Collection();
         MemberCollection ISAmembers = new MemberCollection();
-       
-        /*
-        System.out.println("Hello World!");
-        File file = new File("input-1.dat");
-        Member m1 = new Member("name1","add1","e1");
-        Member m2 = new Member("name2","add2","e2");
-        */
-        
-        System.out.println("TESTING===============================");
-        
- 
-        
+
         initFile(ISAitems,ISAmembers,"input-1.dat");
-        
-        
-        
-        
-        /*try (Scanner scanner  = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String data = scanner.nextLine();
-                System.out.println(data);
-                String[] part = data.split("\\|");
-                System.out.println(part[0]);
-                if (part[0].equals("DVD")){
-                    String[] audioLanguage = part[4].split(",");
-                    ISAitems.addDVD(part[1], part[3], m1, part[2], audioLanguage);
-                }
-                else if (part[0].equals("Book")){
-                    ISAitems.addBook(part[1], part[2], m2, part[4], part[3]);
-                }
-                else if (part[0].equals("Member")){
-                    ISAmembers.addMember(part[1], part[2], part[3]);
-                }
-            }
-        }   catch (IOException o){
-            System.out.println("file not found");
-        }
-        */
-        //testing 
-        
-        System.out.println("");
-        
-     
-        
-        
+ 
         Scanner input = new Scanner(System.in);
         while (isRunning){
             System.out.println(); 
@@ -133,7 +101,7 @@ public class ISA {
             System.out.println("***** Main Menu *****");                        
             System.out.println(); 
             System.out.println("Please choose a number from the following:");
-            System.out.println("Press 1 to member function");
+            System.out.println("Press 1 to search items");
             System.out.println("Press 2 to ...");
             System.out.println("Press 3 to ...");
             System.out.println("Press 4 to ...");
@@ -184,6 +152,10 @@ public class ISA {
     }
     
     //methods
+    
+    public static void searchItems(Collection items, MemberCollection members){
+        
+    }
     
     public static void exit(){
         System.out.println("application closing...");
