@@ -75,7 +75,7 @@ public class ISA {
             System.out.println("Press 5 to exit");
             System.out.print("Enter your choice here: ");
       
-            String choice = input.next();
+            String choice = input.nextLine();
             
             if (!isValidInput("12345", choice)){
                 printForInvalid();
@@ -133,10 +133,10 @@ public class ISA {
     Also it should only accept a length 1 char in the string (so not 12 for example)*/
     public static boolean isValidInput(String validOptions, String entered){
         boolean accepted = true;
-        if (entered.length() > 1){
-            accepted = false;
+        if (entered.length() == 1 && validOptions.contains(entered)){
+            accepted = true;
         }
-        else if (!validOptions.contains(entered)){
+        else{
             accepted = false;
         }     
         
