@@ -37,7 +37,7 @@ public class ISA {
                 String[] part = data.split("\\|");
                 System.out.println(part[0]);
                 if (part[0].equals("DVD")){
-                    String[] audioLanguage = part[4].split("");
+                    String[] audioLanguage = part[4].split(",");
                     item.addDVD(part[1], part[3], m1, part[2], audioLanguage);
                 }
                 else if (part[0].equals("Book")){
@@ -55,10 +55,13 @@ public class ISA {
         
         collection.addMember("john cena","64 zoo lane","js@gmail.com");
         
+        
         for (Member member: collection.getMembers()){
             System.out.println(member.getName());
         }
         System.out.println(item.getItem("精武門"));
+        
+        for (Item item : collection)
         
         
         Scanner input = new Scanner(System.in);
