@@ -1,4 +1,5 @@
 package com.mycompany.isa;
+import java.util.Arrays;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -28,8 +29,16 @@ public class DVD extends Item{
         this.audioLanguages = languages;
     }
     
+    @Override
     public String toString(){
-        return "DVD|" + super.getTitle() + "|" + super.getLanguage() + "|" + director + "|" + audioLanguages + "|" + super.getDonator().getEmail();
+        String lang = "";
+        for (int i = 0; i < audioLanguages.length; i++){
+            lang = lang + audioLanguages[i];
+            if (i < (audioLanguages.length - 1)){
+                lang = lang + ", ";
+            }
+        }
+        return "DVD|" + super.getTitle() + "|" + super.getLanguage() + "|" + director + "|" + lang + "|" + super.getDonator().getEmail(); 
     }
     
 }
