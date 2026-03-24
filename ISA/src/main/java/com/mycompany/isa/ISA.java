@@ -27,8 +27,6 @@ public class ISA {
         //this encapsulates the init of the file items neatly in a separate function
         File file = new File(fileName);
         Member currentMember = null;
-        Member m1 = new Member("name1","add1","e1");
-        Member m2 = new Member("name2","add2","e2");
         
         try (Scanner scanner  = new Scanner(file)) {
             while (scanner.hasNextLine()) {
@@ -78,15 +76,20 @@ public class ISA {
     
     public static void main(String[] args) {
         
-        readFile("input-1.dat");
+        //readFile("input-1.dat");
         Collection ISAitems = new Collection();
         MemberCollection ISAmembers = new MemberCollection();
-        
+       
+        /*
         System.out.println("Hello World!");
         File file = new File("input-1.dat");
         Member m1 = new Member("name1","add1","e1");
         Member m2 = new Member("name2","add2","e2");
+        */
         
+        System.out.println("TESTING===============================");
+        
+ 
         
         initFile(ISAitems,ISAmembers,"input-1.dat");
         
