@@ -22,8 +22,8 @@ public class ISA {
     public static boolean isRunning = true;
     
     public static void main(String[] args) {
-        Collection item = new Collection();
-        MemberCollection collection = new MemberCollection();
+        Collection ISAitems = new Collection();
+        MemberCollection ISAmembers = new MemberCollection();
         
         System.out.println("Hello World!");
         File file = new File("input-1.dat");
@@ -38,13 +38,13 @@ public class ISA {
                 System.out.println(part[0]);
                 if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
-                    item.addDVD(part[1], part[3], m1, part[2], audioLanguage);
+                    ISAitems.addDVD(part[1], part[3], m1, part[2], audioLanguage);
                 }
                 else if (part[0].equals("Book")){
-                    item.addBook(part[1], part[2], m2, part[4], part[3]);
+                    ISAitems.addBook(part[1], part[2], m2, part[4], part[3]);
                 }
                 else if (part[0].equals("Member")){
-                    collection.addMember(part[1], part[2], part[3]);
+                    ISAmembers.addMember(part[1], part[2], part[3]);
                 }
             }
         }   catch (IOException o){
@@ -53,15 +53,15 @@ public class ISA {
         
         //testing 
         
-        collection.addMember("john cena","64 zoo lane","js@gmail.com");
+        ISAmembers.addMember("john cena","64 zoo lane","js@gmail.com");
         
         
-        for (Member member: collection.getMembers()){
+        for (Member member: ISAmembers.getMembers()){
             System.out.println(member.getName());
         }
-        System.out.println(item.getItem("精武門"));
+        System.out.println(ISAitems.getItem("精武門"));
         
-        for (Item item : collection)
+     
         
         
         Scanner input = new Scanner(System.in);
@@ -104,7 +104,7 @@ public class ISA {
                                     String address = input.nextLine();
                                     System.out.print("Type the new member email: ");
                                     String email = input.nextLine();
-                                    collection.addMember(name, address, email);
+                                    ISAmembers.addMember(name, address, email);
                                 case "2":
                                      System.out.println("0");
                     
