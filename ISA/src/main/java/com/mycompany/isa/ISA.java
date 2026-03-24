@@ -129,11 +129,14 @@ public class ISA {
     /* takes a string of what the accepted options are (for example the main menu
     should only accept "12345"), and a string of what the user entered, then checks
     whether their input is in the accepted string or not. Returns true if it is, and
-    false if it isn't */
+    false if it isn't 
+    Also it should only accept a length 1 char in the string (so not 12 for example)*/
     public static boolean isValidInput(String validOptions, String entered){
         boolean accepted = true;
-        
-        if (!validOptions.contains(entered)){
+        if (entered.length() > 1){
+            accepted = false;
+        }
+        else if (!validOptions.contains(entered)){
             accepted = false;
         }     
         
