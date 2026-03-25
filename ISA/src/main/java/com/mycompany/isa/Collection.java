@@ -57,7 +57,10 @@ public class Collection {
     public void getItems(){ ///TESTING ONLY!!
         
         for (Item item: items){
-            System.out.println(item.getDonator());
+            if (item.getDonator() == null){
+                System.out.println("1");
+            }
+            
         }
     }
 }
