@@ -311,7 +311,7 @@ public class ISA {
                                     
                             }
                                   
-                            } while (!loanChoice.equals("0") || !loanChoice.equals("3"));
+                            } while (!loanChoice.equals("0") && !loanChoice.equals("3"));
                             
                             
                         }
