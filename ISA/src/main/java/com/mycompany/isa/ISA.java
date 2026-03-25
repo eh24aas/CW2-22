@@ -321,6 +321,19 @@ public class ISA {
         return accepted;
     }
     
+    public static boolean parseable(String entered){
+        if (entered == null){
+            return false;
+        }
+        try{
+            Integer.parseInt(entered.trim());
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
+    }
+    
     public static void printForInvalid(){
         System.out.println();
         System.out.println("Please choose a *valid* option!");
