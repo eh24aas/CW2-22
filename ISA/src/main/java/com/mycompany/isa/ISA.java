@@ -178,12 +178,12 @@ public class ISA {
                     System.out.println("Please enter the title to search: ");
                     searchTerm = sc.nextLine();
                     searchResults = items.searchItems(searchTerm);
-                    
+                  
                     //check if there are results
                     if (searchResults.size() > 0){
                         //print the results
                         for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
-                            System.out.println(i+1 + ": " + searchResults.get(i).toString()); //prints a number before eveyr entry
+                            System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before eveyr entry
                         }
                         
                         System.out.println("Enter the number of the item: ");
@@ -191,11 +191,69 @@ public class ISA {
                         
                         int numChoice = Integer.parseInt(itemChoice); //turn input into int
                         
-                        if (numChoice >= 1 && numChoice <= searchResults.size()) {
-                            Item selectedItem = searchResults.get(numChoice -1); //-1 to keep within index
-                            System.out.println(selectedItem.getTitle() + " selected!");
-                        } else {
-                            System.out.println("invalid number!");}
+                        while (!(numChoice >= 1 && numChoice <= searchResults.size())) {
+                            System.out.println("invalid number!");
+                            System.out.println("Enter the number of the item: ");
+                            itemChoice = sc.nextLine();
+                            numChoice = Integer.parseInt(itemChoice); //needs input validation
+                        }
+                        
+                        Item selectedItem = searchResults.get(numChoice -1); //-1 to keep within index
+                        System.out.println(selectedItem.getTitle() + " selected!");
+                        
+                        System.out.println();
+                        if (!selectedItem.isAvailable()){
+                            
+                         
+                            System.out.println(selectedItem.toString() + " is currently on loan to "
+                                    + selectedItem.getOnLoanTo().getName());
+                            String loanChoice;
+                            
+                            do{
+                            System.out.println("please select an option: ");
+                            System.out.println("1: return item");
+                            System.out.println("2: update item");
+                            System.out.println("3: remove item");
+                            System.out.println("0: return to main menu");
+                            
+                            loanChoice = sc.nextLine();
+                            
+                            switch(loanChoice){
+                                case "1":
+                                    System.out.println(selectedItem.getTitle() + " returned!");
+                                    selectedItem.returnLoan(); //setting borrower to null
+                                    selectedItem.getOnLoanTo().returnItem(selectedItem); //removes it from borrowers list
+                                    break;
+                                    
+                                case "2":
+                                    System.out.println("updating item");
+                                    break;
+                                    
+                                case "3":
+                                    System.out.println("item removed from system!");
+                                    break;
+                                    
+                                default:
+                                    System.out.println("please enter a valid input!");
+                                   
+                                   
+                                
+                                    
+                                    
+                            }
+                                  
+                            } while (!loanChoice.equals("0"));
+                            
+                            
+                        }
+                       
+                       
+                        
+                        System.out.println(selectedItem.toString());
+                        
+                      
+                        
+                        
                         
                         
 
