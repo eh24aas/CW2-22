@@ -38,7 +38,12 @@ public class DVD extends Item{
                 lang = lang + ",";
             }
         }
-        return "DVD|" + super.getTitle() + "|" + super.getLanguage() + "|" + director + "|" + lang + "|" + super.getDonator().getEmail(); 
+        String returnString =  "DVD|" + super.getTitle() + "|" + super.getLanguage() + "|" + director + "|" + lang + "|" ;
+         if (this.getOnLoanTo() != null){
+            returnString += this.getOnLoanTo().getEmail();
+        }
+        
+        return returnString;
     }
     
 }

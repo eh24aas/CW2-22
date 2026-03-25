@@ -17,12 +17,17 @@ public class Member {
     private String email;
     private int donatedQty;
     private ArrayList<Item> borrowing;
+    private ArrayList<Item> dontatedItems;
     
     public Member(String name, String address, String email){
         this.name = name;
         this.address = address;
         this.email = email;
         this.donatedQty = 0;
+        this.borrowing = new ArrayList<Item>();
+        this.dontatedItems = new ArrayList<Item>();
+        
+        
     }
     
     public String getName(){
@@ -65,8 +70,13 @@ public class Member {
         this.borrowing.add(item);
     }
     
-    public void addDonation(){
+    public void addDonation(Item item){
+        this.dontatedItems.add(item);
         this.donatedQty = this.donatedQty + 1;
+    }
+    
+    public void removeDonation(Item item){
+        this.dontatedItems.remove(item);
     }
     
     public void returnItem(Item item){
