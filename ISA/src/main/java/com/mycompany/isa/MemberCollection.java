@@ -22,6 +22,11 @@ public class MemberCollection {
         this.members.add(newMember);
     }
     
+    public void addMember(Member member){
+        //alternate constructor for pre-existing member objects 
+        this.members.add(member);
+    }
+    
     public void removeMember(Member member){
         this.members.remove(member);
     }

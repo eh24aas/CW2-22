@@ -35,7 +35,7 @@ public class DVD extends Item{
         for (int i = 0; i < audioLanguages.length; i++){
             lang = lang + audioLanguages[i];
             if (i < (audioLanguages.length - 1)){
-                lang = lang + ", ";
+                lang = lang + ",";
             }
         }
         return "DVD|" + super.getTitle() + "|" + super.getLanguage() + "|" + director + "|" + lang + "|" + super.getDonator().getEmail(); 

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 
 
@@ -86,22 +87,25 @@ public class ISA {
     
     public static void main(String[] args) {
         
-        System.out.println("Hello world!");
+        System.out.println("Starting program!");
+        System.out.println("");
         
         //readFile("input-1.dat");
         Collection ISAitems = new Collection();
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
+        
+        mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
-        Scanner input = new Scanner(System.in);
+        /*Scanner input = new Scanner(System.in);
         while (isRunning){
             System.out.println(); 
             System.out.println(); 
             System.out.println("***** Main Menu *****");                        
             System.out.println(); 
             System.out.println("Please choose a number from the following:");
-            System.out.println("Press 1 to search items");
+            System.out.println("Press 1 to ermem");
             System.out.println("Press 2 to ...");
             System.out.println("Press 3 to ...");
             System.out.println("Press 4 to ...");
@@ -148,14 +152,87 @@ public class ISA {
                 }
             }
         }
-        
-    }
+       */
+    } 
     
     //methods
     
-    public static void searchItems(Collection items, MemberCollection members){
+    public static void mainMenu(Collection items, MemberCollection members){
+        
+        String choice; //has to be defined outside of the loop
+        do {
+        System.out.println("Please choose from the following options:");
+        System.out.println("1: Search items");
+        System.out.println("0: Exit program (without saving)");
+
+        choice = sc.nextLine();
+        
+        switch(choice){
+            case "1":
+                System.out.println("search items selected!");
+            
+                String searchTerm;
+                ArrayList<Item> searchResults = new ArrayList();
+                
+                do {
+                    System.out.println("Please enter the title to search: ");
+                    searchTerm = sc.nextLine();
+                    searchResults = items.searchItems(searchTerm);
+                    
+                    //check if there are results
+                    if (searchResults.size() > 0){
+                        //print the results
+                        for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
+                            System.out.println(i+1 + ": " + searchResults.get(i).toString()); //prints a number before eveyr entry
+                        }
+                        
+                        System.out.println("Enter the number of the item: ");
+                        String itemChoice = sc.nextLine();
+                        
+                        int numChoice = Integer.parseInt(itemChoice); //turn input into int
+                        
+                        if (numChoice >= 1 && numChoice <= searchResults.size()) {
+                            Item selectedItem = searchResults.get(numChoice -1); //-1 to keep within index
+                            System.out.println(selectedItem.getTitle() + " selected!");
+                        } else {
+                            System.out.println("invalid number!");}
+                        
+                        
+
+                        
+                        
+                    } else {
+                        System.out.println("no results!");
+                    }
+                
+                } while (searchTerm.isEmpty()); //needs futher checks but works for now
+                
+                
+              
+                
+                
+                break;
+            case "0":
+                System.out.println("Exiting application!"); break;
+            default: 
+                System.out.println("Please enter a valid input!");
+        }
+            
+        } while (!choice.equals("0")); //0 will cause the program to exit and close
+        
+        
+       
         
     }
+    
+    public static void searchItems(Collection items, MemberCollection members){
+        
+        String searchterm;
+    
+                
+    }
+    
+    
     
     public static void exit(){
         System.out.println("application closing...");

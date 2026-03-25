@@ -53,4 +53,8 @@ public class Collection {
     public void removeItem(Item item){
         items.remove(item);
     }
+    
+    public ArrayList<Item> getItems(){ ///TESTING ONLY!!
+        return this.items;
+    }
 }
