@@ -54,7 +54,10 @@ public class Collection {
         items.remove(item);
     }
     
-    public ArrayList<Item> getItems(){ ///TESTING ONLY!!
-        return this.items;
+    public void getItems(){ ///TESTING ONLY!!
+        
+        for (Item item: items){
+            System.out.println(item.getDonator());
+        }
     }
 }
