@@ -27,8 +27,79 @@ public class ISA {
     //global scanner for user input
     public static Scanner sc = new Scanner(System.in);
     
-    
     public static void initFile(Collection items, MemberCollection members, String fileName){
+        File file = new File(fileName);
+        try (Scanner scanner = new Scanner(file)){
+            while(scanner.hasNextLine()){
+                String data = scanner.nextLine();
+                String[] part = data.split("\\|");
+                
+                if (part[0].equals("Member")){
+                    members.addMember(part[1], part[2], part[3]);
+                }                 
+            }
+        } catch (IOException o){
+            System.out.println("file not found!");
+        }
+        
+        Member currentMember = null;
+        
+        try (Scanner scanner = new Scanner(file)){
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                String[] part = line.split("\\|");
+                
+                if(part[0].equals("Member")){ //iterating over members to match via email
+                    for (Member member: members.getMembers()){
+                        if(member.getEmail().equals(part[3])){
+                        currentMember = member;
+                        break;
+                        }//this is to ge who donated the items
+                    }
+                    
+                } else if (part[0].equals("Book")) {
+                    Book book = new Book(part[1], part[2], currentMember, part[4], part[3]);
+                    
+                    if (part.length > 5 && !part[5].isEmpty()){
+                        for (Member member : members.getMembers()){
+                            if (member.getEmail().equals(part[5])) {//part 5 being the email of borrower
+                                book.loanTo(member);
+                                member.lend(book);
+                                break;
+                            }
+                        }
+                    }
+                    
+                    items.addBook(book);
+
+                } else if (part[0].equals("DVD")){
+                    String[] audioLanguage = part[4].split(",");
+                    DVD dvd = new DVD(part[1], part[3], currentMember, part[2], audioLanguage);
+                    
+                    if (part.length > 5 && !part[5].isEmpty()){
+                        for (Member member : members.getMembers()){
+                            if (member.getEmail().equals(part[5])){ //part 5 being the email of borrower
+                                dvd.loanTo(member);
+                                member.lend(dvd);
+                                break;
+                            }
+                        }
+                    }
+                    items.addDVD(dvd);
+                }
+                
+                
+               
+                
+            }
+            
+        } catch (IOException e) {
+            System.out.println("not found");
+        }
+    }
+    
+    /*
+    public static void initFileOld(Collection items, MemberCollection members, String fileName){
         //this encapsulates the init of the file items neatly in a separate function
         File file = new File(fileName);
         Member currentMember = null;
@@ -47,10 +118,15 @@ public class ISA {
                 else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
                     String borrowerEmail = ""; //taking borrower email length 
+                    
+                    DVD dvd = new DVD(part[1], part[3], currentMember, part[2], audioLanguage);
+                    
                     if (part.length > 5 && !part[5].isEmpty()){
                         borrowerEmail = part[5];
+                        
                     }
-                    items.addDVD(part[1], part[3], currentMember, part[2], audioLanguage); //create item and then add borrower
+                    
+                    items.addDVD(dvd); //create item and then add borrower
                 }
                 else if (part[0].equals("Book")){
                     items.addBook(part[1], part[2], currentMember, part[4], part[3]);
@@ -62,7 +138,7 @@ public class ISA {
         }
             
         
-        }
+        }*/
     
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
         
@@ -75,19 +151,6 @@ public class ISA {
         
     }
     
-    public static void readFile(String fileName){
-        //test function to read in a file
-        File file = new File(fileName);
-        
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()){
-            String line = scanner.nextLine();
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-                System.out.println("bleh");
-                }
-    }
     
     public static void main(String[] args) {
         
@@ -209,7 +272,7 @@ public class ISA {
                         if (!selectedItem.isAvailable()){
                             
                          
-                            System.out.println(selectedItem.toString() + " is currently on loan to "
+                            System.out.println(selectedItem.getTitle() + " is currently on loan to "
                                     + selectedItem.getOnLoanTo().getName());
                             String loanChoice;
                             
@@ -248,7 +311,7 @@ public class ISA {
                                     
                             }
                                   
-                            } while (!loanChoice.equals("0"));
+                            } while (!loanChoice.equals("0") || !loanChoice.equals("3"));
                             
                             
                         }
