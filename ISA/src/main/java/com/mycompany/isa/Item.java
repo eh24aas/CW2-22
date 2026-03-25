@@ -61,5 +61,10 @@ abstract class Item {
         return this.language;
     }
     
+    public Member getOnLoanTo(){
+        return this.onLoanTo;
+    }
+    
+    
 }
 
