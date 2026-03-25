@@ -165,61 +165,7 @@ public class ISA {
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
-        /*Scanner input = new Scanner(System.in);
-        while (isRunning){
-            System.out.println(); 
-            System.out.println(); 
-            System.out.println("***** Main Menu *****");                        
-            System.out.println(); 
-            System.out.println("Please choose a number from the following:");
-            System.out.println("Press 1 to ermem");
-            System.out.println("Press 2 to ...");
-            System.out.println("Press 3 to ...");
-            System.out.println("Press 4 to ...");
-            System.out.println("Press 5 to exit");
-            System.out.print("Enter your choice here: ");
-      
-            String choice = input.nextLine();
-            
-            if (!isValidInput("12345", choice)){
-                printForInvalid();
-            }
-            else{
-                switch(choice){
-                    //cases 12345 etc...
-                    case "1":
-                        System.out.println("Please choose a number from the following:");
-                        System.out.println("Press 1 to add member");
-                        System.out.print("Enter your choice here: ");
-      
-                        String choice_1 = input.next();
-            
-                        if (!isValidInput("12345", choice)){
-                            printForInvalid();}
-                        else{
-                            switch(choice_1){
-                                case "1":
-                                    System.out.print("Type the new member name: ");
-                                    String name = input.nextLine();
-                                    System.out.print("Type the new member address: ");
-                                    String address = input.nextLine();
-                                    System.out.print("Type the new member email: ");
-                                    String email = input.nextLine();
-                                    ISAmembers.addMember(name, address, email);
-                                case "2":
-                                     System.out.println("0");
-                    
-                            }
-                        }
-                        
-                    
-                    case "5": 
-                        exit();
-                        break;
-                }
-            }
-        }
-       */
+       
     } 
     
     //methods
@@ -237,37 +183,43 @@ public class ISA {
         switch(choice){
             case "1":
                 System.out.println("search items selected!");
-            
+
                 String searchTerm;
                 ArrayList<Item> searchResults = new ArrayList();
-                
+
                 do {
                     System.out.println("Please enter the title to search: ");
                     searchTerm = sc.nextLine();
                     searchResults = items.searchItems(searchTerm);
-                  
+
                     //check if there are results
                     if (searchResults.size() > 0){
                         //print the results
                         for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
                             System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before eveyr entry
                         }
-                        
+
                         System.out.println("Enter the number of the item: ");
                         String itemChoice = sc.nextLine();
-                        
+
                         int numChoice = Integer.parseInt(itemChoice); //turn input into int
-                        
+
                         while (!(numChoice >= 1 && numChoice <= searchResults.size())) {
                             System.out.println("invalid number!");
                             System.out.println("Enter the number of the item: ");
                             itemChoice = sc.nextLine();
-                            numChoice = Integer.parseInt(itemChoice); //needs input validation
+                            
+                            if(!parseable(itemChoice)){
+                                printForInvalid();
+                            }
+                            else{
+                                numChoice = Integer.parseInt(itemChoice); //needs input validation
+                            }
                         }
-                        
+
                         Item selectedItem = searchResults.get(numChoice -1); //-1 to keep within index
                         System.out.println(selectedItem.getTitle() + " selected!");
-                        
+
                         System.out.println();
                         if (!selectedItem.isAvailable()){
                             
@@ -275,103 +227,76 @@ public class ISA {
                             System.out.println(selectedItem.getTitle() + " is currently on loan to "
                                     + selectedItem.getOnLoanTo().getName());
                             String loanChoice;
-                            
+
                             do{
                             System.out.println("please select an option: ");
                             System.out.println("1: return item");
                             System.out.println("2: update item");
                             System.out.println("3: remove item");
                             System.out.println("0: return to main menu");
-                            
+
                             loanChoice = sc.nextLine();
                             
+                           
+
                             switch(loanChoice){
                                 case "1":
                                     System.out.println(selectedItem.getTitle() + " returned!");
                                     selectedItem.returnLoan(); //setting borrower to null
                                     selectedItem.getOnLoanTo().returnItem(selectedItem); //removes it from borrowers list
                                     break;
-                                    
+
                                 case "2":
                                     System.out.println("updating item");
                                     break;
-                                    
+
                                 case "3":
                                     selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
                                     items.removeItem(selectedItem); //remove from collection
                                     System.out.println(selectedItem.getTitle()+" removed from system!");
                                     break;
-                                    
+
                                 default:
-                                    System.out.println("please enter a valid input!");
-                                   
-                                   
-                                
-                                    
-                                    
+                                    System.out.println("please enter a valid input!"); 
                             }
                                   
                             } while (!loanChoice.equals("0") && !loanChoice.equals("3"));
                             
                             
                         }
-                       
-                       
-                        
+   
                         System.out.println(selectedItem.toString());
-                        
-                      
-                        
-                        
-                        
-                        
 
-                        
-                        
-                    } else {
+
+                    }
+                    
+                    
+                    else {
                         System.out.println("no results!");
                     }
-                
+    
                 } while (searchTerm.isEmpty()); //needs futher checks but works for now
-                
-                
-              
-                
-                
+
+
+
+
+
                 break;
             case "0":
                 System.out.println("Exiting application!"); break;
             default: 
                 System.out.println("Please enter a valid input!");
         }
-            
+       
         } while (!choice.equals("0")); //0 will cause the program to exit and close
         
-        
-       
-        
     }
-    
-    public static void searchItems(Collection items, MemberCollection members){
-        
-        String searchterm;
-    
-                
-    }
-    
-    
-    
-    public static void exit(){
-        System.out.println("application closing...");
-        isRunning = false;   
-    }
-    
-    
     /* takes a string of what the accepted options are (for example the main menu
     should only accept "12345"), and a string of what the user entered, then checks
     whether their input is in the accepted string or not. Returns true if it is, and
     false if it isn't 
     Also it should only accept a length 1 char in the string (so not 12 for example)*/
+    
     public static boolean isValidInput(String validOptions, String entered){
         boolean accepted = true;
         if (entered.length() == 1 && validOptions.contains(entered)){
@@ -382,6 +307,19 @@ public class ISA {
         }     
         
         return accepted;
+    }
+    
+    public static boolean parseable(String entered){
+        if (entered == null){
+            return false;
+        }
+        try{
+            Integer.parseInt(entered.trim());
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
     }
     
     public static void printForInvalid(){
