@@ -19,6 +19,7 @@ abstract class Item {
         this.title = title;
         this.language = language;
         this.donatedBy = donatedBy;
+        this.onLoanTo =null;
     }
     
     public String getTitle(){
