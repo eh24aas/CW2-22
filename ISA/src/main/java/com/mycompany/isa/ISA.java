@@ -46,7 +46,11 @@ public class ISA {
                 }
                 else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
-                    items.addDVD(part[1], part[3], currentMember, part[2], audioLanguage);
+                    String borrowerEmail = ""; //taking borrower email length 
+                    if (part.length > 5 && !part[5].isEmpty()){
+                        borrowerEmail = part[5];
+                    }
+                    items.addDVD(part[1], part[3], currentMember, part[2], audioLanguage); //create item and then add borrower
                 }
                 else if (part[0].equals("Book")){
                     items.addBook(part[1], part[2], currentMember, part[4], part[3]);
@@ -230,7 +234,9 @@ public class ISA {
                                     break;
                                     
                                 case "3":
-                                    System.out.println("item removed from system!");
+                                    selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
+                                    items.removeItem(selectedItem); //remove from collection
+                                    System.out.println(selectedItem.getTitle()+" removed from system!");
                                     break;
                                     
                                 default:
