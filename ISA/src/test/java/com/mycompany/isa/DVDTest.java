@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author elean
+ * @author elean 
  */
 public class DVDTest {
 
@@ -24,14 +24,6 @@ public class DVDTest {
     public DVDTest() {
     }
 
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
     @BeforeEach
     public void setUp() {
         alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com");
@@ -39,12 +31,9 @@ public class DVDTest {
         collection = new Collection();
     }
 
-    @AfterEach
-    public void tearDown() {
-    }
-
+  
     /**
-     * Test that a DVD is correctly added to the collection.
+     * Test that a DVD is correctly added to the collection. testing
      */
     @Test
     public void testDVDAddedToCollection() {
@@ -120,6 +109,32 @@ public class DVDTest {
         String result = instance.toString();
         assertTrue(result.startsWith("DVD|Inception|"));
         assertTrue(result.contains("Nolan"));
+    }
+
+    /**
+     * Test of setDirector method, of class DVD.
+     */
+    @org.junit.jupiter.api.Test
+    public void testSetDirector() {
+        System.out.println("setDirector");
+        String director = "";
+        DVD instance = null;
+        instance.setDirector(director);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setAudioLanguages method, of class DVD.
+     */
+    @org.junit.jupiter.api.Test
+    public void testSetAudioLanguages() {
+        System.out.println("setAudioLanguages");
+        String[] languages = null;
+        DVD instance = null;
+        instance.setAudioLanguages(languages);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }
