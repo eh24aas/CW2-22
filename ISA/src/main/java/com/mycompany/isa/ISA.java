@@ -213,7 +213,7 @@ public class ISA {
                     if (searchResults.size() > 0){
                         //print the results
                         for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
-                            System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before eveyr entry
+                            System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before every entry
                         }
 
                         System.out.println("Enter the number of the item: ");
@@ -246,44 +246,47 @@ public class ISA {
                             String loanChoice;
 
                             do{
-                            System.out.println("please select an option: ");
-                            System.out.println("1: return item");
-                            System.out.println("2: update item");
-                            System.out.println("3: remove item");
-                            System.out.println("0: return to main menu");
+                                System.out.println("please select an option: ");
+                                System.out.println("1: return item");
+                                System.out.println("2: update item");
+                                System.out.println("3: remove item");
+                                System.out.println("0: return to main menu");
 
-                            loanChoice = sc.nextLine();
-                            
-                           
+                                loanChoice = sc.nextLine();
 
-                            switch(loanChoice){
-                                case "1":
-                                    System.out.println(selectedItem.getTitle() + " returned!");
-                                    selectedItem.getOnLoanTo().returnItem(selectedItem); //removes it from borrowers list
-                                    selectedItem.returnLoan(); //setting borrower to null
-                                    
-                                    break;
 
-                                case "2":
-                                    System.out.println("update item selected");
-                                    
-                                    System.out.println("1: update ");
-                                    
-                                    break;
 
-                                case "3":
-                                    selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
-                                    items.removeItem(selectedItem); //remove from collection
-                                    System.out.println(selectedItem.getTitle()+" removed from system!");
-                                    break;
+                                switch(loanChoice){
+                                    case "1":
+                                        System.out.println(selectedItem.getTitle() + " returned!");
+                                        selectedItem.getOnLoanTo().returnItem(selectedItem); //removes it from borrowers list
+                                        selectedItem.returnLoan(); //setting borrower to null
 
-                                default:
-                                    System.out.println("please enter a valid input!"); 
-                            }
-                                  
+                                        break;
+
+                                    case "2":
+                                        System.out.println("update item selected");
+
+                                        System.out.println("1: update ");
+
+                                        break;
+
+                                    case "3":
+                                        selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
+                                        items.removeItem(selectedItem); //remove from collection
+                                        System.out.println(selectedItem.getTitle()+" removed from system!");
+                                        break;
+
+                                    default:
+                                        System.out.println("please enter a valid input!"); 
+                                }
+
                             } while (!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
                             
                             
+                        }
+                        else{
+                            System.out.println(selectedItem.getTitle() + " is available!");
                         }
    
                         System.out.println(selectedItem.toString());
@@ -353,6 +356,20 @@ public class ISA {
         catch(NumberFormatException e){
             return false;
         }
+    }
+    
+    public static boolean isInList(ArrayList<Item> items, String userInput){
+        boolean accepted = false;
+        if (parseable(userInput)){
+            int userNum = Integer.parseInt(userInput.trim());
+            if (userNum >= 1 && userNum <= items.size()){
+                accepted = true;
+            }
+        }
+        else{
+            accepted = false;
+        }
+        return accepted;
     }
     
     public static void printForInvalid(){
