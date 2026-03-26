@@ -166,23 +166,26 @@ public class ISA {
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
+        Member m1 = new Member("a", "b", "c");
+        ISAmembers.addMember(m1);
         
+        ISAitems.addBook("a", "b", m1, "d", "e");
         for (Item item: ISAitems.getItems()){
             if (item.getDonator() == null){
                 System.out.println(item.toString());
             }
-            else {
-                for (Member member: ISAmembers.getMembers()){
-                    if (member == item.getDonator()){
-                        System.out.println(member.toString());
-                        System.out.println(item.toString());
-                    }
-                    
-                }
-                
-            }
         }
-        
+        for (Member member: ISAmembers.getMembers()){
+            System.out.println(member.toString());
+            for (Item item: ISAitems.getItems()){
+                if (item.getDonator() == member && item.getDonator() != null){
+                    
+                    System.out.println(item.toString());
+                }
+            }       
+        }
+                
+            
        
         
         
