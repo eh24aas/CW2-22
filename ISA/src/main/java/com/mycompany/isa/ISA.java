@@ -22,6 +22,7 @@ import java.util.ArrayList;
  */
 public class ISA {
     
+    
     public static boolean isRunning = true;
     
     //global scanner for user input
@@ -70,7 +71,7 @@ public class ISA {
                                 break;
                             }
                         }
-                    }
+                    }//have a silly if here, 
                     
                     items.addBook(book);
 
@@ -197,6 +198,8 @@ public class ISA {
     //methods
     
     public static void mainMenu(Collection items, MemberCollection members){
+        
+        System.out.println("example revert");
         
         String choice; //has to be defined outside of the loop
         do {
