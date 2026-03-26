@@ -326,6 +326,10 @@ public class ISA {
         }
     }
     
-    
+    public static void printForInvalid(){
+        System.out.println();
+        System.out.println("Please choose a *valid* option!");
+        System.out.println(); 
+    }
 }
 
