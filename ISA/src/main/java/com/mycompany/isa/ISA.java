@@ -162,7 +162,10 @@ public class ISA {
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
-        ISAitems.getItems();
+        for (Item item: ISAitems.getItems()){
+            System.out.println(item);
+        }
+        
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
