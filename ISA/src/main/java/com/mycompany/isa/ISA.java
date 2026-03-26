@@ -27,8 +27,79 @@ public class ISA {
     //global scanner for user input
     public static Scanner sc = new Scanner(System.in);
     
-    
     public static void initFile(Collection items, MemberCollection members, String fileName){
+        File file = new File(fileName);
+        try (Scanner scanner = new Scanner(file)){
+            while(scanner.hasNextLine()){
+                String data = scanner.nextLine();
+                String[] part = data.split("\\|");
+                
+                if (part[0].equals("Member")){
+                    members.addMember(part[1], part[2], part[3]);
+                }                 
+            }
+        } catch (IOException o){
+            System.out.println("file not found!");
+        }
+        
+        Member currentMember = null;
+        
+        try (Scanner scanner = new Scanner(file)){
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                String[] part = line.split("\\|");
+                
+                if(part[0].equals("Member")){ //iterating over members to match via email
+                    for (Member member: members.getMembers()){
+                        if(member.getEmail().equals(part[3])){
+                        currentMember = member;
+                        break;
+                        }//this is to ge who donated the items
+                    }
+                    
+                } else if (part[0].equals("Book")) {
+                    Book book = new Book(part[1], part[2], currentMember, part[4], part[3]);
+                    
+                    if (part.length > 5 && !part[5].isEmpty()){
+                        for (Member member : members.getMembers()){
+                            if (member.getEmail().equals(part[5])) {//part 5 being the email of borrower
+                                book.loanTo(member);
+                                member.lend(book);
+                                break;
+                            }
+                        }
+                    }
+                    
+                    items.addBook(book);
+
+                } else if (part[0].equals("DVD")){
+                    String[] audioLanguage = part[4].split(",");
+                    DVD dvd = new DVD(part[1], part[3], currentMember, part[2], audioLanguage);
+                    
+                    if (part.length > 5 && !part[5].isEmpty()){
+                        for (Member member : members.getMembers()){
+                            if (member.getEmail().equals(part[5])){ //part 5 being the email of borrower
+                                dvd.loanTo(member);
+                                member.lend(dvd);
+                                break;
+                            }
+                        }
+                    }
+                    items.addDVD(dvd);
+                }
+                
+                
+               
+                
+            }
+            
+        } catch (IOException e) {
+            System.out.println("not found");
+        }
+    }
+    
+    /*
+    public static void initFileOld(Collection items, MemberCollection members, String fileName){
         //this encapsulates the init of the file items neatly in a separate function
         File file = new File(fileName);
         Member currentMember = null;
@@ -47,10 +118,15 @@ public class ISA {
                 else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
                     String borrowerEmail = ""; //taking borrower email length 
+                    
+                    DVD dvd = new DVD(part[1], part[3], currentMember, part[2], audioLanguage);
+                    
                     if (part.length > 5 && !part[5].isEmpty()){
                         borrowerEmail = part[5];
+                        
                     }
-                    items.addDVD(part[1], part[3], currentMember, part[2], audioLanguage); //create item and then add borrower
+                    
+                    items.addDVD(dvd); //create item and then add borrower
                 }
                 else if (part[0].equals("Book")){
                     items.addBook(part[1], part[2], currentMember, part[4], part[3]);
@@ -62,7 +138,7 @@ public class ISA {
         }
             
         
-        }
+        }*/
     
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
         
@@ -75,19 +151,6 @@ public class ISA {
         
     }
     
-    public static void readFile(String fileName){
-        //test function to read in a file
-        File file = new File(fileName);
-        
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()){
-            String line = scanner.nextLine();
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-                System.out.println("bleh");
-                }
-    }
     
     public static void main(String[] args) {
         
@@ -99,64 +162,11 @@ public class ISA {
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
+        ISAitems.getItems();
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
-        /*Scanner input = new Scanner(System.in);
-        while (isRunning){
-            System.out.println(); 
-            System.out.println(); 
-            System.out.println("***** Main Menu *****");                        
-            System.out.println(); 
-            System.out.println("Please choose a number from the following:");
-            System.out.println("Press 1 to ermem");
-            System.out.println("Press 2 to ...");
-            System.out.println("Press 3 to ...");
-            System.out.println("Press 4 to ...");
-            System.out.println("Press 5 to exit");
-            System.out.print("Enter your choice here: ");
-      
-            String choice = input.nextLine();
-            
-            if (!isValidInput("12345", choice)){
-                printForInvalid();
-            }
-            else{
-                switch(choice){
-                    //cases 12345 etc...
-                    case "1":
-                        System.out.println("Please choose a number from the following:");
-                        System.out.println("Press 1 to add member");
-                        System.out.print("Enter your choice here: ");
-      
-                        String choice_1 = input.next();
-            
-                        if (!isValidInput("12345", choice)){
-                            printForInvalid();}
-                        else{
-                            switch(choice_1){
-                                case "1":
-                                    System.out.print("Type the new member name: ");
-                                    String name = input.nextLine();
-                                    System.out.print("Type the new member address: ");
-                                    String address = input.nextLine();
-                                    System.out.print("Type the new member email: ");
-                                    String email = input.nextLine();
-                                    ISAmembers.addMember(name, address, email);
-                                case "2":
-                                     System.out.println("0");
-                    
-                            }
-                        }
-                        
-                    
-                    case "5": 
-                        exit();
-                        break;
-                }
-            }
-        }
-       */
+       
     } 
     
     //methods
@@ -213,9 +223,9 @@ public class ISA {
 
                         System.out.println();
                         if (!selectedItem.isAvailable()){
-
-
-                            System.out.println(selectedItem.toString() + " is currently on loan to "
+                            
+                         
+                            System.out.println(selectedItem.getTitle() + " is currently on loan to "
                                     + selectedItem.getOnLoanTo().getName());
                             String loanChoice;
 
@@ -227,6 +237,8 @@ public class ISA {
                             System.out.println("0: return to main menu");
 
                             loanChoice = sc.nextLine();
+                            
+                           
 
                             switch(loanChoice){
                                 case "1":
@@ -246,35 +258,24 @@ public class ISA {
                                     break;
 
                                 default:
-                                    System.out.println("please enter a valid input!");
-
-
-
-
-
+                                    System.out.println("please enter a valid input!"); 
                             }
-
-                            } while (!loanChoice.equals("0"));
-
-
+                                  
+                            } while (!loanChoice.equals("0") && !loanChoice.equals("3"));
+                            
+                            
                         }
-
-
-
+   
                         System.out.println(selectedItem.toString());
 
 
-
-
-
-
-
-
-
-                    } else {
+                    }
+                    
+                    
+                    else {
                         System.out.println("no results!");
                     }
-
+    
                 } while (searchTerm.isEmpty()); //needs futher checks but works for now
 
 
@@ -290,31 +291,13 @@ public class ISA {
        
         } while (!choice.equals("0")); //0 will cause the program to exit and close
         
-        
-       
-        
     }
-    
-    public static void searchItems(Collection items, MemberCollection members){
-        
-        String searchterm;
-    
-                
-    }
-    
-    
-    
-    public static void exit(){
-        System.out.println("application closing...");
-        isRunning = false;   
-    }
-    
-    
     /* takes a string of what the accepted options are (for example the main menu
     should only accept "12345"), and a string of what the user entered, then checks
     whether their input is in the accepted string or not. Returns true if it is, and
     false if it isn't 
     Also it should only accept a length 1 char in the string (so not 12 for example)*/
+    
     public static boolean isValidInput(String validOptions, String entered){
         boolean accepted = true;
         if (entered.length() == 1 && validOptions.contains(entered)){

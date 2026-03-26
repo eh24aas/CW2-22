@@ -23,8 +23,16 @@ public class Collection {
         items.add(book);
     }
     
+    public void addBook(Book book){
+        items.add(book);
+    }
+    
     public void addDVD(String title, String director, Member donatedBy, String language, String[] audioLanguages){
         DVD dvd = new DVD(title, director, donatedBy, language, audioLanguages);
+        items.add(dvd);
+    }
+    
+    public void addDVD(DVD dvd){
         items.add(dvd);
     }
     
