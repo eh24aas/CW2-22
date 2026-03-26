@@ -66,7 +66,7 @@ public class Collection {
         
         for (Item item: items){
             if (item.getDonator() == null){
-                System.out.println("1");
+            System.out.println(item);
             }
             
         }
