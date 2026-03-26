@@ -139,7 +139,7 @@ public class ISA {
     
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
         
-        try {PrintWriter writer = new PrintWriter(new FileWriter(fileName));
+        try {PrintWriter writer = new PrintWriter(fileName);
             for (Item item: items.getItems()){
                 if (item.getDonator() == null){
                     writer.println(item.toString());
@@ -151,9 +151,11 @@ public class ISA {
                     if (item.getDonator() == member && item.getDonator() != null){
                         writer.println(item.toString());
                     }
-                }       
+                }
             }
-        } catch (IOException e) {
+            writer.close();
+            
+        } catch (Exception e) {
             System.out.println("file not found");
         }
         
