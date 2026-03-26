@@ -255,8 +255,9 @@ public class ISA {
                             switch(loanChoice){
                                 case "1":
                                     System.out.println(selectedItem.getTitle() + " returned!");
-                                    selectedItem.returnLoan(); //setting borrower to null
                                     selectedItem.getOnLoanTo().returnItem(selectedItem); //removes it from borrowers list
+                                    selectedItem.returnLoan(); //setting borrower to null
+                                    
                                     break;
 
                                 case "2":
@@ -273,7 +274,7 @@ public class ISA {
                                     System.out.println("please enter a valid input!"); 
                             }
                                   
-                            } while (!loanChoice.equals("0") && !loanChoice.equals("3"));
+                            } while (!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
                             
                             
                         }
