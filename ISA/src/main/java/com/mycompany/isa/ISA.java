@@ -3,14 +3,8 @@
  */
 
 package com.mycompany.isa;
-
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -146,8 +140,22 @@ public class ISA {
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
         
         try {PrintWriter writer = new PrintWriter(fileName);
-                
-        } catch (FileNotFoundException e) {
+            for (Item item: items.getItems()){
+                if (item.getDonator() == null){
+                    writer.println(item.toString());
+                }
+            }
+            for (Member member: members.getMembers()){
+                writer.println(member.toString());
+                for (Item item: items.getItems()){
+                    if (item.getDonator() == member && item.getDonator() != null){
+                        writer.println(item.toString());
+                    }
+                }
+            }
+            writer.close();
+            
+        } catch (Exception e) {
             System.out.println("file not found");
         }
         
@@ -167,28 +175,8 @@ public class ISA {
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
-        Member m1 = new Member("a", "b", "c");
-        ISAmembers.addMember(m1);
         
-        ISAitems.addBook("a", "b", m1, "d", "e");   //hello
-        for (Item item: ISAitems.getItems()){
-            if (item.getDonator() == null){
-                System.out.println(item.toString());
-            }
-        }
-        for (Member member: ISAmembers.getMembers()){
-            System.out.println(member.toString());
-            for (Item item: ISAitems.getItems()){
-                if (item.getDonator() == member && item.getDonator() != null){
-                    
-                    System.out.println(item.toString());
-                }
-            }       
-        }
-                
-            
-       
-        
+        saveToFile(ISAitems,ISAmembers,"input-2.dat");
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
