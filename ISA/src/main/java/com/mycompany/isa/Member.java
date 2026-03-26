@@ -54,6 +54,11 @@ public class Member {
         this.email = email;
     }
     
+    
+    public ArrayList<Item> getDonatedItems(){
+        return this.dontatedItems;
+    }
+    
     public int getDonatedQty(){
         return this.donatedQty;
     }
