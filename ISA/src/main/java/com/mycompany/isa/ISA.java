@@ -277,7 +277,10 @@ public class ISA {
                                     break;
 
                                 case "2":
-                                    System.out.println("updating item");
+                                    System.out.println("update item selected");
+                                    
+                                    System.out.println("1: update ");
+                                    
                                     break;
 
                                 case "3":
@@ -320,6 +323,22 @@ public class ISA {
        
         } while (!choice.equals("0")); //0 will cause the program to exit and close
         
+    }
+    
+    public static void updateItem(Collection items, MemberCollection members, Item item){
+        
+        boolean loop = true;
+        
+        System.out.println("");
+        while(loop){
+            if (item instanceof Book){
+                
+                System.out.println("1: update title");
+                System.out.println("2: update author");
+                System.out.println("3: update ISBN");
+                System.out.println("4: update language");
+            }
+        }
     }
 
     
