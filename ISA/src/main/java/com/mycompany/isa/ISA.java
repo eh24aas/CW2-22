@@ -171,6 +171,16 @@ public class ISA {
             if (item.getDonator() == null){
                 System.out.println(item.toString());
             }
+            else {
+                for (Member member: ISAmembers.getMembers()){
+                    if (member == item.getDonator()){
+                        System.out.println(member.toString());
+                        System.out.println(item.toString());
+                    }
+                    
+                }
+                
+            }
         }
         
        
