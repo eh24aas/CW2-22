@@ -62,13 +62,8 @@ public class Collection {
         items.remove(item);
     }
     
-    public void getItems(){ ///TESTING ONLY!!
-        
-        for (Item item: items){
-            if (item.getDonator() == null){
-            System.out.println(item);
-            }
-            
-        }
+    public ArrayList<Item> getItems(){
+        return items;
+     
     }
 }
