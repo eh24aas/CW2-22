@@ -59,8 +59,8 @@ public class ISA {
                     
                 } else if (part[0].equals("Book")) {
                     Book book = new Book(part[1], part[2], currentMember, part[4], part[3]);
-                    if (book.getDonator() != null){
-                    System.out.println(book.getDonator().getName());}
+                    //if (book.getDonator() != null){
+                    //System.out.println(book.getDonator().getName());}
                     
                     if (part.length > 5 && !part[5].isEmpty()){
                         for (Member member : members.getMembers()){
@@ -166,9 +166,14 @@ public class ISA {
         MemberCollection ISAmembers = new MemberCollection();
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
+        
         for (Item item: ISAitems.getItems()){
-            System.out.println(item);
+            if (item.getDonator() == null){
+                System.out.println(item.toString());
+            }
         }
+        
+       
         
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
