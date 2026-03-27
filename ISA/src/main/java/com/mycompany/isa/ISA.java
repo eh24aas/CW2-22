@@ -524,11 +524,25 @@ public class ISA {
         }
     }
     
-    public static boolean isInList(ArrayList<Item> items, String userInput){
+    public static boolean isInMemberList(MemberCollection members, String userInput){
         boolean accepted = false;
         if (parseable(userInput)){
             int userNum = Integer.parseInt(userInput.trim());
-            if (userNum >= 1 && userNum <= items.size()){
+            if (userNum >= 1 && userNum <= members.getMembers().size()){
+                accepted = true;
+            }
+        }
+        else{
+            accepted = false;
+        }
+        return accepted;
+    }
+    
+    public static boolean isInItemList(Collection items, String userInput){
+        boolean accepted = false;
+        if (parseable(userInput)){
+            int userNum = Integer.parseInt(userInput.trim());
+            if (userNum >= 1 && userNum <= items.getItems().size()){
                 accepted = true;
             }
         }
