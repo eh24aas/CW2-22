@@ -282,12 +282,16 @@ public class ISA {
                                         items.removeItem(selectedItem); //remove from collection
                                         System.out.println(selectedItem.getTitle()+" removed from system!");
                                         break;
+                                        
+                                    case "0":
+                                        System.out.println("returning to main menu...");
+                                        break;
 
                                     default:
                                         System.out.println("please enter a valid input!"); 
                                 }
 
-                            } while (!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
+                            } while (!loanChoice.contentEquals("0")&&!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
                             
                             
                         }
