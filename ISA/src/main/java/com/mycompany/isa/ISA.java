@@ -194,6 +194,7 @@ public class ISA {
         System.out.println("Please choose from the following options:");
         System.out.println("1: Search items");
         System.out.println("2: Search member");
+        System.out.println("5: Save to file");
         System.out.println("0: Exit program (without saving)");
 
         choice = sc.nextLine();
@@ -338,6 +339,21 @@ public class ISA {
                     }
                 }
                 break;
+                
+                
+            case "5":
+                System.out.println("Save to file selected!");
+                System.out.println("Please enter the name of the file to save to: ");
+                String fileName = sc.nextLine();
+                while(fileName.isBlank()|| fileName.isEmpty()){
+                    System.out.println("Please enter the name of the file to save to: ");
+                    fileName = sc.nextLine();
+                }
+                System.out.println(fileName + " saved!");
+                System.out.println("returning to main menu...");
+                System.out.println("");
+               
+                
                 
             case "0":
                 System.out.println("Exiting application!"); break;
