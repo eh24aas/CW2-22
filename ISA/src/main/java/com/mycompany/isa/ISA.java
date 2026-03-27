@@ -312,10 +312,18 @@ public class ISA {
                 String ans = sc.next();
                 System.out.println();
                 ArrayList<Member> member_search = members.searchMember(ans);
-                System.out.println(member_search);
-                if (member_search != null){
+                for (int i = 1; i < (member_search.size() + 1); i++) {
+                    System.out.println(i + " " + member_search.get(i - 1));
+                }
+                if (member_search.isEmpty()){
+                    System.out.println("Can't find any member");
+                }
+                if (!member_search.isEmpty()){
+                    System.out.println("which member you want to select?");
+                    int member_index = sc.nextInt();
+                    String member_selected = member_search.get(member_index);
                     System.out.println("please select an option: ");
-                    System.out.println("1: udate member");
+                    System.out.println("1: update member");
                     System.out.println("2: remove member");
                     String option_ans = sc.next();
                     System.out.println();
