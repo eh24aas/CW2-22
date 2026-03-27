@@ -268,8 +268,10 @@ public class ISA {
 
                                     case "2":
                                         System.out.println("update item selected");
+                                        updateItem(items,members,selectedItem);
+                                        
 
-                                        System.out.println("1: update ");
+                                        
 
                                         break;
 
@@ -365,20 +367,109 @@ public class ISA {
         
     }
     
+    //this will likely bre re-used in the test - use instanceof (new class)anf copy the required code into a new else if
+    //shared methods for title/language
     public static void updateItem(Collection items, MemberCollection members, Item item){
         
-        boolean loop = true;
+        boolean updateLoop = true; //set to false when completed
         
         System.out.println("");
-        while(loop){
+        
             if (item instanceof Book){
+                
+                while(updateLoop){
                 
                 System.out.println("1: update title");
                 System.out.println("2: update author");
                 System.out.println("3: update ISBN");
                 System.out.println("4: update language");
+                System.out.println("5: update borrower email");
+                
+                System.out.println("Please enter an option");
+                String updateChoice = sc.nextLine();
+                
+                switch(updateChoice){
+                    case "1":
+                        System.out.println("update title selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "2":
+                        System.out.println("update author selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "3":
+                        System.out.println("update ISBN selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "4":
+                        System.out.println("update language selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "5":
+                        System.out.println("borrower email selected");
+                        updateLoop = false;
+                        break;
+                        
+                    default:
+                        System.out.println("please enter a digit between 1 and 5");
+                        
+                      
+                }
+                
+                }
+                
+                
+            } else if(item instanceof DVD){
+                
+                System.out.println("1: update title");
+                System.out.println("2: update language");
+                System.out.println("3: update director");
+                System.out.println("4: update languages");
+                System.out.println("5: update borrower email");
+                
+                System.out.println("Please enter an option");
+                String updateChoice = sc.nextLine();
+                
+                while(updateLoop){
+                    
+                }
+                    switch(updateChoice){
+                    case "1":
+                        System.out.println("update title selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "2":
+                        System.out.println("update author selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "3":
+                        System.out.println("update ISBN selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "4":
+                        System.out.println("update language selected");
+                        updateLoop = false;
+                        break;
+                        
+                    case "5":
+                        System.out.println("borrower email selected");
+                        updateLoop = false;
+                        break;
+                        
+                    default:
+                        System.out.println("please enter a digit between 1 and 5");
+                }
+                
+                
             }
-        }
+        
     }
 
     
@@ -426,5 +517,7 @@ public class ISA {
         System.out.println("Please choose a *valid* option!");
         System.out.println(); 
     }
+    
+    
 }
 
