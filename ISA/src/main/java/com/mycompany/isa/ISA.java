@@ -524,6 +524,20 @@ public class ISA {
         }
     }
     
+    public static void displayMembers(MemberCollection members){
+        if (members.getMembers().isEmpty()){
+            System.out.println("No members found...");
+            System.out.println();
+        }
+        else{        
+            int i = 1;
+            for (Member member: members.getMembers()){
+                System.out.println(i + ": " + member.toString());
+                i++;
+            }
+        }
+    }
+      
     public static boolean isInMemberList(MemberCollection members, String userInput){
         boolean accepted = false;
         if (parseable(userInput)){
