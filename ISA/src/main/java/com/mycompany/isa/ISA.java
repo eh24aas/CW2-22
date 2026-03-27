@@ -308,13 +308,25 @@ public class ISA {
 
                 break;
             case "2":
-                Boolean member_loop = true;
-                while(member_loop){
-                    System.out.println("Member you want to search:");
-                    String ans = sc.next();
-                    System.out.println(members.searchMember(ans));
-                    
-                    member_loop = false;
+                System.out.println("Member you want to search:");
+                String ans = sc.next();
+                ArrayList<Member> member_search = members.searchMember(ans);
+                System.out.println(member_search);
+                if (member_search != null){
+                    System.out.println("please select an option: ");
+                    System.out.println("1: udate member");
+                    System.out.println("2: remove member");
+                    String option_ans = sc.next();
+                    if (sc == null){
+                        break;
+                    }
+                    switch(option_ans){
+                        case "1":
+                            break;
+                        case "2":
+                            members.removeMember(member_search);
+                        
+                    }
                 }
                 break;
                 
