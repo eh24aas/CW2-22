@@ -19,11 +19,11 @@ public class Member {
     private ArrayList<Item> borrowing;
     private ArrayList<Item> dontatedItems;
     
-    public Member(String name, String address, String email){
+    public Member(String name, String address, String email, int donatedQty){
         this.name = name;
         this.address = address;
         this.email = email;
-        this.donatedQty = 0;
+        this.donatedQty = donatedQty;
         this.borrowing = new ArrayList<Item>();
         this.dontatedItems = new ArrayList<Item>();
         
