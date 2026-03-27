@@ -165,8 +165,6 @@ public class ISA {
     
     public static void main(String[] args) {
         
-        System.out.println("hellooooo");
-        
         System.out.println("Starting program!");
         System.out.println("");
         
@@ -176,7 +174,7 @@ public class ISA {
 
         initFile(ISAitems,ISAmembers,"input-1.dat");
         
-        saveToFile(ISAitems,ISAmembers,"input-2.dat");
+        //saveToFile(ISAitems,ISAmembers,"input-2.dat");
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
  
@@ -186,8 +184,6 @@ public class ISA {
     //methods
     
     public static void mainMenu(Collection items, MemberCollection members){
-        
-        System.out.println("example revert");
         
         String choice; //has to be defined outside of the loop
         do {
@@ -205,12 +201,18 @@ public class ISA {
 
                 String searchTerm;
                 ArrayList<Item> searchResults = new ArrayList();
+                boolean validSearch = false;
 
-                do {
+                while(!validSearch){
                     System.out.println("Please enter the title to search: ");
                     searchTerm = sc.nextLine();
                     searchResults = items.searchItems(searchTerm);
-
+                    
+                    if (!searchTerm.isBlank()){
+                        validSearch = true;
+                    }
+                }
+                
                     //check if there are results
                     if (searchResults.size() > 0){
                         //print the results
@@ -280,12 +282,16 @@ public class ISA {
                                         items.removeItem(selectedItem); //remove from collection
                                         System.out.println(selectedItem.getTitle()+" removed from system!");
                                         break;
+                                        
+                                    case "0":
+                                        System.out.println("returning to main menu...");
+                                        break;
 
                                     default:
                                         System.out.println("please enter a valid input!"); 
                                 }
 
-                            } while (!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
+                            } while (!loanChoice.contentEquals("0")&&!loanChoice.equals("1") &&!loanChoice.equals("2") && !(loanChoice.equals("3")));
                             
                             
                         }
@@ -340,13 +346,10 @@ public class ISA {
                         System.out.println("no results!");
                     }
     
-                } while (searchTerm.isEmpty()); //needs futher checks but works for now
-
-
-
-
+                 //needs futher checks but works for now
 
                 break;
+                
             case "2":
                 System.out.println("Member you want to search:");
                 String ans = sc.next();
@@ -417,6 +420,7 @@ public class ISA {
                 System.out.println(fileName + " saved!");
                 System.out.println("returning to main menu...");
                 System.out.println("");
+                break;
                
                 
                 
@@ -454,6 +458,7 @@ public class ISA {
                 switch(updateChoice){
                     case "1":
                         System.out.println("update title selected");
+                        updateTitle(item);
                         updateLoop = false;
                         break;
                         
@@ -503,6 +508,7 @@ public class ISA {
                     switch(updateChoice){
                     case "1":
                         System.out.println("update title selected");
+                        updateTitle(item);
                         updateLoop = false;
                         break;
                         
@@ -609,10 +615,20 @@ public class ISA {
         System.out.println(); 
     }
     
-    public void updateTitle(Item item){
-    //can be reused for new class
+    public static void updateTitle(Item item){
+        String newTitle;
+        String oldTitle = item.getTitle();
+        do {
+            System.out.println("Please enter the new title: ");
+            newTitle = sc.nextLine();
+        } while (newTitle.isBlank() || newTitle.isEmpty());
+        item.setTitle(newTitle);
+        System.out.println(oldTitle + " was renamed to "+ newTitle);
+        System.out.println("returning to main menu...");
+        }
+    
    
     
-    }
+    
 }
 
