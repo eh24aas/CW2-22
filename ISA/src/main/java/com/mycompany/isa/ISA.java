@@ -321,7 +321,7 @@ public class ISA {
                 if (!member_search.isEmpty()){
                     System.out.println("which member you want to select?");
                     int member_index = sc.nextInt();
-                    String member_selected = member_search.get(member_index);
+                    Member member_selected = member_search.get(member_index);
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
@@ -334,7 +334,7 @@ public class ISA {
                         System.out.println("1");
                     }
                     else if (option_ans.equals("2")){
-                        System.out.println("2");
+                        members.removeMember(member_selected);
                     }
                 }
                 break;
