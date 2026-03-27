@@ -310,6 +310,7 @@ public class ISA {
             case "2":
                 System.out.println("Member you want to search:");
                 String ans = sc.next();
+                System.out.println();
                 ArrayList<Member> member_search = members.searchMember(ans);
                 System.out.println(member_search);
                 if (member_search != null){
@@ -317,15 +318,15 @@ public class ISA {
                     System.out.println("1: udate member");
                     System.out.println("2: remove member");
                     String option_ans = sc.next();
-                    if (sc == null){
+                    System.out.println();
+                    if (option_ans == null){
                         break;
                     }
-                    switch(option_ans){
-                        case "1":
-                            break;
-                        case "2":
-                            members.removeMember(member_search);
-                        
+                    else if (option_ans.equals("1")){
+                        System.out.println("1");
+                    }
+                    else if (option_ans.equals("2")){
+                        System.out.println("2");
                     }
                 }
                 break;
