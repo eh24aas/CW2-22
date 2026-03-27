@@ -351,6 +351,7 @@ public class ISA {
                     System.out.println("Please enter the name of the file to save to: ");
                     fileName = sc.nextLine();
                 }
+                saveToFile(items,members,fileName);
                 System.out.println(fileName + " saved!");
                 System.out.println("returning to main menu...");
                 System.out.println("");
@@ -518,6 +519,10 @@ public class ISA {
         System.out.println(); 
     }
     
+    public void updateTitle(Item item){
+    //can be reused for new class
+   
     
+    }
 }
 
