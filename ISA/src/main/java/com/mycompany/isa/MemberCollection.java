@@ -17,8 +17,8 @@ public class MemberCollection {
         this.members = new ArrayList();
     }
     
-    public void addMember(String name, String address, String email){
-        Member newMember =  new Member(name,address,email);
+    public void addMember(String name, String address, String email, int donatedQty){
+        Member newMember =  new Member(name,address,email, donatedQty);
         this.members.add(newMember);
     }
     
