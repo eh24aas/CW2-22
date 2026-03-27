@@ -30,7 +30,7 @@ public class ISA {
                 String[] part = data.split("\\|");
                 
                 if (part[0].equals("Member")){
-                    members.addMember(part[1], part[2], part[3]);
+                    members.addMember(part[1], part[2], part[3], Integer.parseInt(part[4]));
                 }                 
             }
         } catch (IOException o){
@@ -193,6 +193,7 @@ public class ISA {
         do {
         System.out.println("Please choose from the following options:");
         System.out.println("1: Search items");
+        System.out.println("2: Search member");
         System.out.println("0: Exit program (without saving)");
 
         choice = sc.nextLine();
@@ -306,6 +307,17 @@ public class ISA {
 
 
                 break;
+            case "2":
+                Boolean member_loop = true;
+                while(member_loop){
+                    System.out.println("Member you want to search:");
+                    String ans = sc.next();
+                    System.out.println(members.searchMember(ans));
+                    
+                    member_loop = false;
+                }
+                break;
+                
             case "0":
                 System.out.println("Exiting application!"); break;
             default: 
