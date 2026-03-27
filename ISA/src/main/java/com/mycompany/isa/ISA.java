@@ -325,7 +325,7 @@ public class ISA {
                     System.out.println("Can't find any member");
                 }
                 if (!member_search.isEmpty()){
-                    System.out.println("which member you want to select?");
+                    System.out.println("Which member you want to select?");
                     int member_index = sc.nextInt();
                     Member member_selected = member_search.get(member_index);
                     System.out.println("please select an option: ");
@@ -337,7 +337,32 @@ public class ISA {
                         break;
                     }
                     else if (option_ans.equals("1")){
-                        System.out.println("1");
+                        System.out.println("Please select an option: ");
+                        System.out.println("1. update email");
+                        System.out.println("2. update name");
+                        System.out.println("3. update address");
+                        String update_member_choice = sc.next();
+                        sc.nextLine();
+                        switch(update_member_choice){
+                            case "1":
+                                System.out.print("Type the email: ");
+                                String member_email = sc.nextLine();
+                                member_selected.setEmail(member_email);
+                                break;
+                            case "2":
+                                System.out.print("Type the name: ");
+                                String member_name = sc.nextLine();
+                                member_selected.setName(member_name);
+                                for (Member member: members.getMembers()){
+                                    System.out.println(member);
+                                }
+                                break;
+                            case "3":
+                                System.out.print("Type the address: ");
+                                String member_address = sc.nextLine();
+                                member_selected.setAddress(member_address);
+                                break;
+                        }
                     }
                     else if (option_ans.equals("2")){
                         members.removeMember(member_selected);
