@@ -177,8 +177,7 @@ public class ISA {
         //saveToFile(ISAitems,ISAmembers,"input-2.dat");
         
         mainMenu(ISAitems,ISAmembers); //call the main menu, when exit is slected the program ends naturally
- 
-       
+
     } 
     
     //methods
@@ -190,6 +189,7 @@ public class ISA {
         System.out.println("Please choose from the following options:");
         System.out.println("1: Search items");
         System.out.println("2: Search member");
+        System.out.println("3: Add member");
         System.out.println("5: Save to file");
         System.out.println("0: Exit program (without saving)");
 
@@ -351,20 +351,27 @@ public class ISA {
                 break;
                 
             case "2":
+                Boolean update_loop = true;
                 System.out.println("Member you want to search:");
                 String ans = sc.next();
                 System.out.println();
                 ArrayList<Member> member_search = members.searchMember(ans);
-                for (int i = 1; i < (member_search.size() + 1); i++) {
-                    System.out.println(i + " " + member_search.get(i - 1));
+                for (Member member : member_search) {
+                    System.out.println(member);
+                    System.out.println("borrowing number: " + member.borrowingQty());
+                    for (Item item : member.getLoanItems()) {
+                        System.out.println(item.getTitle());
+                    }
                 }
+         
+                
                 if (member_search.isEmpty()){
                     System.out.println("Can't find any member");
                 }
                 if (!member_search.isEmpty()){
                     System.out.println("Which member you want to select?");
                     int member_index = sc.nextInt();
-                    Member member_selected = member_search.get(member_index);
+                    Member member_selected = member_search.get(member_index - 1);
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
@@ -374,39 +381,68 @@ public class ISA {
                         break;
                     }
                     else if (option_ans.equals("1")){
-                        System.out.println("Please select an option: ");
-                        System.out.println("1. update email");
-                        System.out.println("2. update name");
-                        System.out.println("3. update address");
-                        String update_member_choice = sc.next();
-                        sc.nextLine();
-                        switch(update_member_choice){
+                        
+                        do{
+                            System.out.println("Please select an option: ");
+                            System.out.println("1. update email");
+                            System.out.println("2. update name");
+                            System.out.println("3. update address");
+                            String update_member_choice = sc.next();
+                            sc.nextLine();
+                            switch(update_member_choice){
                             case "1":
                                 System.out.print("Type the email: ");
                                 String member_email = sc.nextLine();
-                                member_selected.setEmail(member_email);
+                                for (Member member: members.getMembers()){
+                                    if (member.getEmail().equals(member_selected.getEmail())){
+                                    member.setEmail(member_email);}
+                                    System.out.println(member);
+                                    update_loop = false;
+                                }
+                                
                                 break;
                             case "2":
                                 System.out.print("Type the name: ");
                                 String member_name = sc.nextLine();
-                                member_selected.setName(member_name);
                                 for (Member member: members.getMembers()){
+                                    if (member.getName().equals(member_selected.getName())){
+                                    member.setName(member_name);}
                                     System.out.println(member);
+                                    update_loop = false;
                                 }
                                 break;
                             case "3":
                                 System.out.print("Type the address: ");
                                 String member_address = sc.nextLine();
-                                member_selected.setAddress(member_address);
+                                for (Member member: members.getMembers()){
+                                    if (member.getAddress().equals(member_selected.getAddress())){
+                                    member.setAddress(member_address);}
+                                    System.out.println(member);
+                                    update_loop = false;
+                                }
                                 break;
+                            default:
+                                System.out.println("Please enter a valid input!");
                         }
+                        }while(update_loop);
+                        
                     }
                     else if (option_ans.equals("2")){
                         members.removeMember(member_selected);
                     }
                 }
                 break;
-                
+             
+            case "3":
+                System.out.print("Type the name of the member: ");
+                String member_name = sc.nextLine();
+                System.out.print("Type the address of the member: ");
+                String member_address = sc.nextLine();
+                System.out.print("Type the email of the member: ");
+                String member_email = sc.nextLine();
+                members.addMember(member_name, member_address, member_email, 0);
+                System.out.println("Member added");
+                break;
                 
             case "5":
                 System.out.println("Save to file selected!");
