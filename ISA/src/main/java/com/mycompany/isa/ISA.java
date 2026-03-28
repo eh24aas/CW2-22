@@ -361,8 +361,11 @@ public class ISA {
                 String ans = sc.next();
                 System.out.println();
                 ArrayList<Member> member_search = members.searchMember(ans);
+                int i = 0;
+                
                 for (Member member : member_search) {
-                    System.out.println(member);
+                    i = i + 1;
+                    System.out.println(i + " " + member);
                     System.out.println("borrowing number: " + member.borrowingQty());
                     for (Item item : member.getLoanItems()) {
                         System.out.println(item.getTitle());
@@ -378,7 +381,7 @@ public class ISA {
                     
                     while(member_search_loop){
                     try{
-                        System.out.print("What do you want to do? ");
+                        System.out.print("Which member you want to select? ");
                         member_index = sc.nextInt();
                         sc.nextLine();
                         if (member_index < 0 || member_index > member_search.size()){
