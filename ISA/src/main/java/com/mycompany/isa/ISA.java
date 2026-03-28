@@ -6,6 +6,7 @@ package com.mycompany.isa;
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 
@@ -229,6 +230,9 @@ public class ISA {
                         while (!(numChoice >= 1 && numChoice <= searchResults.size())) {
                             System.out.println("invalid number!");
                             System.out.println("Enter the number of the item: ");
+                            for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
+                            System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before every entry
+                            }
                             itemChoice = sc.nextLine();
                             
                             if(!parseable(itemChoice)){
@@ -241,6 +245,7 @@ public class ISA {
 
                         Item selectedItem = searchResults.get(numChoice -1); //-1 to keep within index
                         System.out.println(selectedItem.getTitle() + " selected!");
+                        System.out.println("Item details: " + selectedItem.toString());
 
                         System.out.println();
                         if (!selectedItem.isAvailable()){
@@ -514,6 +519,7 @@ public class ISA {
         System.out.println("");
         
             if (item instanceof Book){
+                Book book = (Book)  item;
                 
                 while(updateLoop){
                 
@@ -521,7 +527,7 @@ public class ISA {
                 System.out.println("2: update author");
                 System.out.println("3: update ISBN");
                 System.out.println("4: update language");
-                System.out.println("5: update borrower email");
+                System.out.println("");
                 
                 System.out.println("Please enter an option");
                 String updateChoice = sc.nextLine();
@@ -535,11 +541,33 @@ public class ISA {
                         
                     case "2":
                         System.out.println("update author selected");
+                        String newAuthor;
+                        String oldAuthor = book.getAuthor();
+                        
+                        do {
+                            System.out.println("Please enter the new author: ");
+                            newAuthor = sc.nextLine();
+                        } while (newAuthor.isEmpty());
+                        
+                        book.setAuthor(newAuthor);
+                        System.out.println(oldAuthor + " was changed to "+ newAuthor);
+                        System.out.println("returning to main menu...");
                         updateLoop = false;
                         break;
                         
                     case "3":
                         System.out.println("update ISBN selected");
+                        String newISBN;
+                        String oldISBN = book.getIsbn();
+                        
+                        do {
+                            System.out.println("Please enter the new ISBN: ");
+                            newISBN = sc.nextLine();
+                        } while (newISBN.isEmpty());
+                        
+                        book.setIsbn(newISBN);
+                        System.out.println(oldISBN + " was changed to "+ newISBN);
+                        System.out.println("returning to main menu...");
                         updateLoop = false;
                         break;
                         
@@ -548,11 +576,7 @@ public class ISA {
                         updateLoop = false;
                         updateLanguage(item);
                         break;
-                        
-                    case "5":
-                        System.out.println("borrower email selected");
-                        updateLoop = false;
-                        break;
+
                         
                     default:
                         System.out.println("please enter a digit between 1 and 5");
@@ -567,17 +591,15 @@ public class ISA {
                 DVD dvd = (DVD) item; //polymorphism - it can use the updatetitle and other generic methods by passing item, bu can use specific by passing dvd - they are the same obj
                 
                 System.out.println("1: update title");
-                System.out.println("2: update language");
-                System.out.println("3: update director");
-                System.out.println("4: update languages");
-                System.out.println("5: update borrower email");
+                System.out.println("2: update director");
+                System.out.println("3: update audio languages");
+                System.out.println("4: language");
                 
                 System.out.println("Please enter an option");
                 String updateChoice = sc.nextLine();
                 
                 while(updateLoop){
                     
-                }
                     switch(updateChoice){
                     case "1":
                         System.out.println("update title selected");
@@ -587,23 +609,36 @@ public class ISA {
                         
                     case "2":
                         System.out.println("update director selected");
-                        updateLoop = false;
                         String newDirector;
                         String oldDirector = dvd.getDirector();
                         
                         do {
-                            System.out.println("Please enter the new title: ");
-                            newTitle = sc.nextLine();
-                        } while (newTitle.isBlank() || newTitle.isEmpty());
+                            System.out.println("Please enter the new director: ");
+                            newDirector = sc.nextLine();
+                        } while (newDirector.isBlank() || newDirector.isEmpty());
                         
-                        item.setTitle(newTitle);
-                        System.out.println(oldTitle + " was renamed to "+ newTitle);
+                        dvd.setDirector(newDirector);
+                        System.out.println(oldDirector + " was renamed to "+ newDirector);
                         System.out.println("returning to main menu...");
+                        
+                        updateLoop = false;
                         
                         break;
                         
                     case "3":
-                        System.out.println("update ISBN selected");
+                        System.out.println("update audio languages selected");
+                        String[] oldLanguages = dvd.getAudioLanguages();
+                        String newLanguageInput;
+                        do{
+                            System.out.println("Please enter the the list a available languages, "
+                                    + "separated by a comma.");
+                            newLanguageInput = sc.nextLine();
+                        } while(newLanguageInput.isEmpty());
+                        
+                        String[] newLanguages = newLanguageInput.split(",");
+                        dvd.setAudioLanguages(newLanguages);
+                        System.out.println(Arrays.toString(oldLanguages)+" changed to "+ Arrays.toString(newLanguages));
+                        System.out.println("returning to main menu....");
                         updateLoop = false;
                         break;
                         
@@ -613,13 +648,10 @@ public class ISA {
                         updateLanguage(item);
                         break;
                         
-                    case "5":
-                        System.out.println("borrower email selected");
-                        updateLoop = false;
-                        break;
-                        
                     default:
-                        System.out.println("please enter a digit between 1 and 5");
+                        System.out.println("please choose from the options: ");
+                        
+                    }
                 }
                 
                 

@@ -27,6 +27,14 @@ public class Book extends Item{
         this.isbn = isbn;
     }
     
+    public String getAuthor(){
+        return this.author;
+    }
+    
+    public String getIsbn(){
+        return this.isbn;
+    }
+    
     @Override
     public String toString(){
         String returnString = "Book|" + super.getTitle() + "|" + author + "|" + isbn + "|" + super.getLanguage() + "|";
