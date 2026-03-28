@@ -453,10 +453,10 @@ public class ISA {
                     else if (option_ans.equals("2")){
                         for (Item item:items.getItems()){
                             if(item.getDonator() == member_selected){
-                                item.setDonatedBy(null);
+                                item.clearDonator();
                             }
                             if(item.getOnLoanTo() == member_selected){
-                                item.setLoanTo(null);
+                                item.clearDonator();
                             }
                         }
                         members.removeMember(member_selected);
