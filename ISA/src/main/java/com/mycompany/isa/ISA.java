@@ -6,6 +6,7 @@ package com.mycompany.isa;
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 
 
@@ -352,6 +353,10 @@ public class ISA {
                 
             case "2":
                 Boolean update_loop = true;
+                Boolean update_loop2 = true;
+                Boolean update_loop3 = true;
+                int member_index = 0;
+                String option_ans = "";
                 System.out.println("Member you want to search:");
                 String ans = sc.next();
                 System.out.println();
@@ -363,24 +368,42 @@ public class ISA {
                         System.out.println(item.getTitle());
                     }
                 }
-         
                 
                 if (member_search.isEmpty()){
                     System.out.println("Can't find any member");
+                    sc.nextLine();
                 }
                 if (!member_search.isEmpty()){
-                    System.out.println("Which member you want to select?");
-                    int member_index = sc.nextInt();
+                    
+                    
+                    while(update_loop3){
+                    try{
+                        System.out.print("What do you want to do? ");
+                        member_index = sc.nextInt();
+                        sc.nextLine();
+                        if (member_index < 0 || member_index > member_search.size()){
+                        System.out.println("input incorrect");
+                        }
+                        else{
+                            update_loop3 = false;
+                        }
+                    }catch(InputMismatchException e){
+                        System.out.println("Input a valid number");
+                        sc.nextLine();
+                        }
+                }
                     Member member_selected = member_search.get(member_index - 1);
+                    do{
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
-                    String option_ans = sc.next();
-                    System.out.println();
-                    if (option_ans == null){
-                        break;
+                    option_ans = sc.nextLine();
+                    if (option_ans.equals("1") || option_ans.equals("2")){
+                        update_loop2 = false;
                     }
-                    else if (option_ans.equals("1")){
+                    System.out.println();
+                    }while(update_loop2);
+                    if (option_ans.equals("1")){
                         
                         do{
                             System.out.println("Please select an option: ");
