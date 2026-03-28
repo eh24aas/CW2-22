@@ -365,7 +365,7 @@ public class ISA {
                 
                 for (Member member : member_search) {
                     i = i + 1;
-                    System.out.println(i + " " + member);
+                    System.out.println(i + ": " + member);
                     System.out.println("borrowing number: " + member.borrowingQty());
                     for (Item item : member.getLoanItems()) {
                         System.out.println(item.getTitle());
