@@ -456,7 +456,7 @@ public class ISA {
                                 item.clearDonator();
                             }
                             if(item.getOnLoanTo() == member_selected){
-                                item.clearDonator();
+                                item.returnLoan();
                             }
                         }
                         members.removeMember(member_selected);

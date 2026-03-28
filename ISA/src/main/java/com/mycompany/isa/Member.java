@@ -95,4 +95,6 @@ public class Member {
     public String toString(){
         return "Member|" + name + "|" + address + "|" + email + "|" + donatedQty;      
     }
+    
+    
 }
