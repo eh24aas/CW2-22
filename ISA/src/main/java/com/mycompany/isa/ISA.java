@@ -546,6 +546,7 @@ public class ISA {
                     case "4":
                         System.out.println("update language selected");
                         updateLoop = false;
+                        updateLanguage(item);
                         break;
                         
                     case "5":
@@ -563,6 +564,7 @@ public class ISA {
                 
                 
             } else if(item instanceof DVD){
+                DVD dvd = (DVD) item; //polymorphism - it can use the updatetitle and other generic methods by passing item, bu can use specific by passing dvd - they are the same obj
                 
                 System.out.println("1: update title");
                 System.out.println("2: update language");
@@ -584,8 +586,20 @@ public class ISA {
                         break;
                         
                     case "2":
-                        System.out.println("update author selected");
+                        System.out.println("update director selected");
                         updateLoop = false;
+                        String newDirector;
+                        String oldDirector = dvd.getDirector();
+                        
+                        do {
+                            System.out.println("Please enter the new title: ");
+                            newTitle = sc.nextLine();
+                        } while (newTitle.isBlank() || newTitle.isEmpty());
+                        
+                        item.setTitle(newTitle);
+                        System.out.println(oldTitle + " was renamed to "+ newTitle);
+                        System.out.println("returning to main menu...");
+                        
                         break;
                         
                     case "3":
@@ -596,6 +610,7 @@ public class ISA {
                     case "4":
                         System.out.println("update language selected");
                         updateLoop = false;
+                        updateLanguage(item);
                         break;
                         
                     case "5":
@@ -611,6 +626,30 @@ public class ISA {
             }
         
     }
+    
+    public static void updateTitle(Item item){
+        String newTitle;
+        String oldTitle = item.getTitle();
+        do {
+            System.out.println("Please enter the new title: ");
+            newTitle = sc.nextLine();
+        } while (newTitle.isBlank() || newTitle.isEmpty());
+        item.setTitle(newTitle);
+        System.out.println(oldTitle + " was renamed to "+ newTitle);
+        System.out.println("returning to main menu...");
+        }
+    
+    public static void updateLanguage(Item item){
+        String newLang;
+        String oldLang = item.getLanguage();
+        do {
+            System.out.println("Please enter the new language: ");
+            newLang = sc.nextLine();
+        } while (newLang.isBlank() || newLang.isEmpty());
+        item.setLanguage(newLang);
+        System.out.println(oldLang + " was changed to "+ newLang);
+        System.out.println("returning to main menu...");
+        }
 
     
     public static boolean isValidInput(String validOptions, String entered){
@@ -686,17 +725,7 @@ public class ISA {
         System.out.println(); 
     }
     
-    public static void updateTitle(Item item){
-        String newTitle;
-        String oldTitle = item.getTitle();
-        do {
-            System.out.println("Please enter the new title: ");
-            newTitle = sc.nextLine();
-        } while (newTitle.isBlank() || newTitle.isEmpty());
-        item.setTitle(newTitle);
-        System.out.println(oldTitle + " was renamed to "+ newTitle);
-        System.out.println("returning to main menu...");
-        }
+    
     
    
     

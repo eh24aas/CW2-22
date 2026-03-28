@@ -29,6 +29,14 @@ public class DVD extends Item{
         this.audioLanguages = languages;
     }
     
+    public String getDirector(){
+        return this.director;
+    }
+    
+    public String[] getAudioLanguages(){
+        return this.audioLanguages;
+    }
+    
     @Override
     public String toString(){
         String lang = "";
