@@ -353,8 +353,8 @@ public class ISA {
                 
             case "2":
                 Boolean update_loop = true;
-                Boolean update_loop2 = true;
-                Boolean update_loop3 = true;
+                Boolean option_loop = true;
+                Boolean member_search_loop = true;
                 int member_index = 0;
                 String option_ans = "";
                 System.out.println("Member you want to search:");
@@ -376,7 +376,7 @@ public class ISA {
                 if (!member_search.isEmpty()){
                     
                     
-                    while(update_loop3){
+                    while(member_search_loop){
                     try{
                         System.out.print("What do you want to do? ");
                         member_index = sc.nextInt();
@@ -385,7 +385,7 @@ public class ISA {
                         System.out.println("input incorrect");
                         }
                         else{
-                            update_loop3 = false;
+                            member_search_loop = false;
                         }
                     }catch(InputMismatchException e){
                         System.out.println("Input a valid number");
@@ -399,10 +399,10 @@ public class ISA {
                     System.out.println("2: remove member");
                     option_ans = sc.nextLine();
                     if (option_ans.equals("1") || option_ans.equals("2")){
-                        update_loop2 = false;
+                        option_loop = false;
                     }
                     System.out.println();
-                    }while(update_loop2);
+                    }while(option_loop);
                     if (option_ans.equals("1")){
                         
                         do{
@@ -451,6 +451,14 @@ public class ISA {
                         
                     }
                     else if (option_ans.equals("2")){
+                        for (Item item:items.getItems()){
+                            if(item.getDonator() == member_selected){
+                                item.setDonatedBy(null);
+                            }
+                            if(item.getOnLoanTo() == member_selected){
+                                item.setLoanTo(null);
+                            }
+                        }
                         members.removeMember(member_selected);
                     }
                 }
