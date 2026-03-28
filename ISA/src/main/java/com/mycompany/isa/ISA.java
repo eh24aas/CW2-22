@@ -327,6 +327,7 @@ public class ISA {
                                             System.out.println("Please either return an item or donate first!");
                                         }
                                         else{
+                                            theChosenOne.lend(selectedItem);
                                             selectedItem.loanTo(theChosenOne);
                                             selectedItem.getOnLoanTo();
                                             System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
