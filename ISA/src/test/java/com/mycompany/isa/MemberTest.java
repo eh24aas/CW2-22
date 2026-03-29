@@ -30,8 +30,8 @@ public class MemberTest {
 
     @BeforeEach
     public void setUp() {
-        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com");
-        bob   = new Member("Bob Jones",  "2 Low Rd, Hertford, SG13 1AB",  "bob@example.com");
+        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com", 0);
+        bob   = new Member("Bob Jones",  "2 Low Rd, Hertford, SG13 1AB",  "bob@example.com", 0);
         collection = new Collection();
     }
 
@@ -40,7 +40,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of getName method
+     * test of getName method
      */
     @Test
     public void testGetName() {
@@ -49,7 +49,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of getAddress method
+     * test of getAddress method
      */
     @Test
     public void testGetAddress() {
@@ -58,7 +58,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of getEmail method
+     * test of getEmail method
      */
     @Test
     public void testGetEmail() {
@@ -67,7 +67,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of setName method
+     * test of setName method
      */
     @Test
     public void testSetName() {
@@ -77,7 +77,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of setAddress method
+     * test of setAddress method
      */
     @Test
     public void testSetAddress() {
@@ -87,7 +87,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of setEmail method
+     * test of setEmail method
      */
     @Test
     public void testSetEmail() {
@@ -97,8 +97,8 @@ public class MemberTest {
     }
 
     /**
-     * Test of getDonatedQty method
-     * A new member should start with zero donations.
+     * test of getDonatedQty method
+     * a new member should start with zero donations
      */
     @Test
     public void testGetDonatedQty() {
@@ -107,19 +107,20 @@ public class MemberTest {
     }
 
     /**
-     * Test of addDonation method
-     * Donating an item should increment donatedQty.
+     * test of addDonation method
+     * donating an item should increment donatedQty
      */
     @Test
     public void testAddDonation() {
         System.out.println("addDonation");
-        collection.addBook("1984", "Orwell", alice, "English", "978-0451524935");
+        Book book = new Book("1984", "Orwell", alice, "English", "978-0451524935");
+        alice.addDonation(book);
         assertEquals(1, alice.getDonatedQty());
     }
 
     /**
-     * Test of borrowingQty method
-     * A new member should be borrowing zero items.
+     * test of borrowingQty method
+     * a new member should be borrowing zero items
      */
     @Test
     public void testBorrowingQty() {
@@ -128,8 +129,8 @@ public class MemberTest {
     }
 
     /**
-     * Test of lend method
-     * Lending an item should add it to the borrowing list.
+     * test of lend method
+     * lending an item should add it to the borrowing list
      */
     @Test
     public void testLend() {
@@ -142,8 +143,8 @@ public class MemberTest {
     }
 
     /**
-     * Test of returnItem method
-     * Returning an item should remove it from the borrowing list.
+     * test of returnItem method
+     * returning an item should remove it from the borrowing list
      */
     @Test
     public void testReturnItem() {
@@ -158,7 +159,7 @@ public class MemberTest {
     }
 
     /**
-     * Test of toString method
+     * test of toString method
      */
     @Test
     public void testToString() {
