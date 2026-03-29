@@ -21,6 +21,7 @@ public class ISA {
     //global scanner for user input
     public static Scanner sc = new Scanner(System.in);
     
+    
     public static void initFile(Collection items, MemberCollection members, String fileName){
         File file = new File(fileName);
         try (Scanner scanner = new Scanner(file)){
@@ -93,48 +94,6 @@ public class ISA {
             System.out.println("not found");
         }
     }
-    
-    /*
-    public static void initFileOld(Collection items, MemberCollection members, String fileName){
-        //this encapsulates the init of the file items neatly in a separate function
-        File file = new File(fileName);
-        Member currentMember = null;
-        
-        try (Scanner scanner  = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String data = scanner.nextLine();
-                //System.out.println(data);
-                String[] part = data.split("\\|");
-                //System.out.println(part[0]);
-                
-                if (part[0].equals("Member")){
-                    currentMember = new Member(part[1], part[2], part[3]);
-                    members.addMember(part[1], part[2], part[3]);
-                }
-                else if (part[0].equals("DVD")){
-                    String[] audioLanguage = part[4].split(",");
-                    String borrowerEmail = ""; //taking borrower email length 
-                    
-                    DVD dvd = new DVD(part[1], part[3], currentMember, part[2], audioLanguage);
-                    
-                    if (part.length > 5 && !part[5].isEmpty()){
-                        borrowerEmail = part[5];
-                        
-                    }
-                    
-                    items.addDVD(dvd); //create item and then add borrower
-                }
-                else if (part[0].equals("Book")){
-                    items.addBook(part[1], part[2], currentMember, part[4], part[3]);
-                }
-             
-            }
-        }   catch (IOException o){
-            System.out.println("file not found");
-        }
-            
-        
-        }*/
     
     public static void saveToFile(Collection items, MemberCollection members, String fileName){
         
@@ -501,10 +460,10 @@ public class ISA {
    
                         }
                         donateNum = Integer.parseInt(donateChoice);
-                        m = members.getMembers().get(donateNum -1);
+                        Member donator = members.getMembers().get(donateNum -1);
                         
-                        items.addBook(title, author, m, language, isbn);
-                        System.out.println("");
+                        items.addBook(title, author, donator, language, isbn);
+                        System.out.println( title + " added!");
                         
                         }
                 
