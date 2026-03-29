@@ -41,51 +41,51 @@ public class MemberCollectionTest {
     }
 
     /**
-     * Test of addMember method, of class MemberCollection.
-     * Collection size should increase after adding a member.
+     * test of addMember method, of class MemberCollection
+     * collection size should increase after adding a member
      */
     @Test
     public void testAddMember() {
         System.out.println("addMember");
-        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com");
+        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com", 0);
         assertEquals(1, memberCollection.getMembers().size());
     }
 
     /**
-     * Test of removeMember method, of class MemberCollection.
-     * Collection size should decrease after removing a member.
+     * test of removeMember method, of class MemberCollection
+     * collection size should decrease after removing a member
      */
     @Test
     public void testRemoveMember() {
         System.out.println("removeMember");
-        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com");
+        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com", 0);
         Member m = memberCollection.getMembers().get(0);
         memberCollection.removeMember(m);
         assertEquals(0, memberCollection.getMembers().size());
     }
 
     /**
-     * Test of searchMember method, of class MemberCollection.
-     * Should find a member by partial name match.
+     * test of searchMember method, of class MemberCollection
+     * should find a member by partial name match
      */
     @Test
     public void testSearchMember() {
         System.out.println("searchMember");
-        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com");
-        memberCollection.addMember("Bob Jones", "2 Low Rd", "bob@example.com");
+        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com", 0);
+        memberCollection.addMember("Bob Jones", "2 Low Rd", "bob@example.com", 0);
         ArrayList<Member> results = memberCollection.searchMember("Alice");
         assertEquals(1, results.size());
         assertEquals("Alice Smith", results.get(0).getName());
     }
 
     /**
-     * Test of searchMember method, of class MemberCollection.
-     * Search should be case insensitive.
+     * test of searchMember method, of class MemberCollection
+     * search should be case insensitive
      */
     @Test
     public void testSearchMemberCaseInsensitive() {
         System.out.println("searchMember - case insensitive");
-        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com");
+        memberCollection.addMember("Alice Smith", "1 High St", "alice@example.com", 0);
         assertEquals(1, memberCollection.searchMember("alice").size());
     }
 
