@@ -34,7 +34,7 @@ public class CollectionTest {
 
     @BeforeEach
     public void setUp() {
-        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com");
+        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com", 0);
         collection = new Collection();
     }
 
@@ -43,7 +43,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of addBook method, of class Collection.
+     * test of addBook method
      * Book should appear in collection after being added.
      */
     @Test
@@ -54,7 +54,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of addDVD method, of class Collection.
+     * test of addDVD method
      * DVD should appear in collection after being added.
      */
     @Test
@@ -65,7 +65,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of getItem method, of class Collection.
+     * test of getItem method
      * Should return null if the item does not exist.
      */
     @Test
@@ -75,7 +75,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of searchItems method, of class Collection.
+     * test of searchItems method
      * Should return items whose title contains the search term.
      */
     @Test
@@ -88,7 +88,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of searchItems method, of class Collection.
+     * test of searchItems method
      * Search should be case insensitive.
      */
     @Test
@@ -99,7 +99,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of searchItems method, of class Collection.
+     * test of searchItems method
      * Should return an empty list when no items match.
      */
     @Test
@@ -110,7 +110,7 @@ public class CollectionTest {
     }
 
     /**
-     * Test of removeItem method, of class Collection.
+     * test of removeItem method
      * Item should no longer be found after removal.
      */
     @Test
