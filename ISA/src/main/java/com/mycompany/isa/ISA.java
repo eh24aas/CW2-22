@@ -412,11 +412,11 @@ public class ISA {
                 switch(typeNum){
                     case "1":
                         System.out.println("Adding a book");
-                        String title;
+                        String BookTitle;
                         do{
                             System.out.println("please enter the title:");
-                            title = sc.nextLine();    
-                        } while(title.isBlank());
+                            BookTitle = sc.nextLine();    
+                        } while(BookTitle.isBlank());
                         
                         String author;
                         do{
@@ -424,11 +424,11 @@ public class ISA {
                             author = sc.nextLine();    
                         } while(author.isBlank());
                         
-                        String language;
+                        String bookLanguage;
                         do{
                             System.out.println("please enter the language:");
-                            language = sc.nextLine();    
-                        } while(language.isBlank());
+                            bookLanguage = sc.nextLine();    
+                        } while(bookLanguage.isBlank());
                         
                         String isbn;
                         do{
@@ -462,27 +462,70 @@ public class ISA {
                         donateNum = Integer.parseInt(donateChoice);
                         Member donator = members.getMembers().get(donateNum -1);
                         
-                        items.addBook(title, author, donator, language, isbn);
-                        System.out.println( title + " added!");
+                        items.addBook(BookTitle, author, donator, bookLanguage, isbn);
+                        System.out.println( BookTitle + " added!");
                         
+                    case "2":
+                        System.out.println("Adding a DVD:");
+                        
+                        String titleDVD;
+                        do{
+                            System.out.println("please enter the title:");
+                            titleDVD = sc.nextLine();    
+                        } while(titleDVD.isBlank());
+                        
+                        String director;
+                        do{
+                            System.out.println("please enter the author:");
+                            director = sc.nextLine();    
+                        } while(director.isBlank());
+                        
+                        String languageDVD;
+                        do{
+                            System.out.println("please enter the language:");
+                            languageDVD = sc.nextLine();    
+                        } while(languageDVD.isBlank());
+                        
+                        String newLanguageInput;
+                        do{
+                            System.out.println("Please enter the the list a available languages, "
+                                    + "separated by a comma.");
+                            newLanguageInput = sc.nextLine();
+                        } while(newLanguageInput.isEmpty());
+                        
+                        String[] audioLanguages = newLanguageInput.split(",");
+                        
+                        Member mDVD;
+                        String donateChoiceDVD = "";
+                        boolean realMemberDVD = true;
+                        int donateNumDVD;
+                        
+                        while(realMemberDVD){
+                            displayMembers(members);
+                            System.out.println("Enter the number of the donator: ");
+
+                            
+                            for (int j = 0; j < members.getMembers().size(); j++){ 
+                            System.out.println(j+1 + ": " + members.getMembers().get(j).getName()); //prints a number before every entry
+                            }
+                            donateChoice = sc.nextLine();
+                            
+                            if(!parseable(donateChoice)){
+                                printForInvalid();
+                            }
+                            else{
+                                realMember = false;//breaks the loop
+                            }
+   
                         }
-                
+                        donateNumDVD = Integer.parseInt(donateChoiceDVD);
+                        Member donatorDVD = members.getMembers().get(donateNumDVD -1);
                         
-                                            
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                       
-                
+                        items.addDVD(titleDVD, director, donatorDVD, languageDVD, audioLanguages);
+                        System.out.println( titleDVD + " added!");
+
+                        }
+
                 break;
                 
             case "5":
@@ -659,9 +702,7 @@ public class ISA {
             }
         
     }
-    
-    
-    
+   
     private static void processAvailableItem(Item selectedItem, MemberCollection members)
     {
         String notOnLoanChoice;
