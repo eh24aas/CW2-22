@@ -192,6 +192,7 @@ public class ISA {
         System.out.println("1: Search items");
         System.out.println("2: Search member");
         System.out.println("3: Add member");
+        System.out.println("4: Add item");
         System.out.println("5: Save to file");
         System.out.println("0: Exit program (without saving)");
 
@@ -277,10 +278,7 @@ public class ISA {
                                     case "2":
                                         System.out.println("update item selected");
                                         updateItem(items,members,selectedItem);
-                                        
-
-                                        
-
+             
                                         break;
 
                                     case "3":
@@ -482,6 +480,94 @@ public class ISA {
                 String member_email = sc.nextLine();
                 members.addMember(member_name, member_address, member_email, 0);
                 System.out.println("Member added");
+                break;
+                
+            case "4":
+                String typeNum;
+                do{
+                    System.out.println("Add item selected");
+                    System.out.println("What type of item are you adding?");
+                    System.out.println("please choose from the following options:");
+                    System.out.println("1: Book");
+                    System.out.println("2: DVD");
+                    typeNum = sc.nextLine();
+       
+                } while (!typeNum.equals("1")&&!typeNum.equals("2") );
+                
+                switch(typeNum){
+                    case "1":
+                        System.out.println("Adding a book");
+                        String title;
+                        do{
+                            System.out.println("please enter the title:");
+                            title = sc.nextLine();    
+                        } while(title.isBlank());
+                        
+                        String author;
+                        do{
+                            System.out.println("please enter the author:");
+                            author = sc.nextLine();    
+                        } while(author.isBlank());
+                        
+                        String language;
+                        do{
+                            System.out.println("please enter the language:");
+                            language = sc.nextLine();    
+                        } while(language.isBlank());
+                        
+                        String isbn;
+                        do{
+                            System.out.println("please enter the isbn:");
+                            isbn = sc.nextLine();    
+                        } while(isbn.isBlank());
+                        
+                        Member m;
+                        String donateChoice = "";
+                        boolean realMember = true;
+                        int donateNum;
+                        
+                        while(realMember){
+                            displayMembers(members);
+                            System.out.println("Enter the number of the donator: ");
+
+                            
+                            for (int j = 0; j < members.getMembers().size(); j++){ 
+                            System.out.println(j+1 + ": " + members.getMembers().get(j).getName()); //prints a number before every entry
+                            }
+                            donateChoice = sc.nextLine();
+                            
+                            if(!parseable(donateChoice)){
+                                printForInvalid();
+                            }
+                            else{
+                                realMember = false;//breaks the loop
+                            }
+   
+                        }
+                        donateNum = Integer.parseInt(donateChoice);
+                        m = members.getMembers().get(donateNum -1);
+                        
+                        items.addBook(title, author, m, language, isbn);
+                        System.out.println("");
+                        
+                        }
+                
+                        
+                                            
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                       
+                
                 break;
                 
             case "5":
