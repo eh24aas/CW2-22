@@ -257,7 +257,7 @@ public class ISA {
                         }
                         else{
                             //if item is available
-                            processAvailableItem(selectedItem, members);
+                            processAvailableItem(selectedItem, members, items);
                         }
 
                     }
@@ -703,13 +703,14 @@ public class ISA {
         
     }
    
-    private static void processAvailableItem(Item selectedItem, MemberCollection members)
+    private static void processAvailableItem(Item selectedItem, MemberCollection members, Collection items)
     {
         String notOnLoanChoice;
         String memberChoice;
         do{
             System.out.println(selectedItem.getTitle() + " is available!");
             System.out.println("Press 1 to borrow " + selectedItem.getTitle());
+            System.out.println("Press 2 to update "+ selectedItem.getTitle());
             System.out.println("Press 0 to return to the menu");
             notOnLoanChoice = sc.nextLine();
 
@@ -738,7 +739,10 @@ public class ISA {
                         System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
                         System.out.println("Don't forget to return it!");
                     }
-
+                    break;
+                    
+                case "2":
+                    updateItem(items,members,selectedItem);
                     break;
                 default:
                     System.out.println("please enter a valid input!");
