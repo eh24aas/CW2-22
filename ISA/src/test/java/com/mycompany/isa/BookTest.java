@@ -30,8 +30,8 @@ public class BookTest {
 
     @BeforeEach
     public void setUp() {
-        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com");
-        bob   = new Member("Bob Jones",  "2 Low Rd, Hertford, SG13 1AB",  "bob@example.com");
+        alice = new Member("Alice Smith", "1 High St, Hatfield, AL10 1AB", "alice@example.com", 0);
+        bob   = new Member("Bob Jones",  "2 Low Rd, Hertford, SG13 1AB",  "bob@example.com", 0);
         collection = new Collection();
     }
 
@@ -40,7 +40,7 @@ public class BookTest {
     }
 
     /**
-     * Test that a Book is correctly added to the collection.
+     * test that a Book is correctly added to the collection
      */
     @Test
     public void testBookAddedToCollection() {
@@ -50,7 +50,7 @@ public class BookTest {
     }
 
     /**
-     * Test that the added item is an instance of Book.
+     * test that the added item is an instance of Book
      */
     @Test
     public void testBookIsInstanceOfItem() {
@@ -60,7 +60,7 @@ public class BookTest {
     }
 
     /**
-     * Test that getTitle returns the correct title.
+     * test that getTitle returns the correct title
      */
     @Test
     public void testGetTitle() {
@@ -70,7 +70,7 @@ public class BookTest {
     }
 
     /**
-     * Test that getLanguage returns the correct language.
+     * test that getLanguage returns the correct language
      */
     @Test
     public void testGetLanguage() {
@@ -80,7 +80,7 @@ public class BookTest {
     }
 
     /**
-     * Test that a Book is available by default (not on loan).
+     * test that a Book is available by default (not on loan)
      */
     @Test
     public void testBookIsAvailableByDefault() {
@@ -90,7 +90,7 @@ public class BookTest {
     }
 
     /**
-     * Test that lending a Book makes it unavailable.
+     * test that lending a Book makes it unavailable
      */
     @Test
     public void testBookLoanMakesUnavailable() {
@@ -102,7 +102,7 @@ public class BookTest {
     }
 
     /**
-     * Test that returning a Book makes it available again.
+     * test that returning a Book makes it available again
      */
     @Test
     public void testBookReturnMakesAvailable() {
@@ -115,7 +115,7 @@ public class BookTest {
     }
 
     /**
-     * Test that the donator is correctly set on a Book.
+     * test that the donator is correctly set on a Book
      */
     @Test
     public void testBookGetDonator() {
@@ -125,8 +125,8 @@ public class BookTest {
     }
 
     /**
-     * Test of toString method, of class Book.
-     * Should start with "Book|" and contain key fields.
+     * test of toString method, of class Book
+     * should start with "Book|" and contain key fields
      */
     @Test
     public void testToString() {
