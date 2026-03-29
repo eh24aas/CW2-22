@@ -18,9 +18,6 @@ import java.util.InputMismatchException;
  */
 public class ISA {
     
-    
-    public static boolean isRunning = true;
-    
     //global scanner for user input
     public static Scanner sc = new Scanner(System.in);
     
@@ -302,49 +299,8 @@ public class ISA {
                             
                         }
                         else{
-                            /*if item is available
-                            give option to borrow it
-                            only if member is currently borrowing less than what they've donated (so can only borrow same amount they've donated max)*/
-                            String notOnLoanChoice;
-                            String memberChoice;
-                            do{
-                                System.out.println(selectedItem.getTitle() + " is available!");
-                                System.out.println("Press 1 to borrow " + selectedItem.getTitle());
-                                System.out.println("Press 0 to return to the menu");
-                                notOnLoanChoice = sc.nextLine();
-                                
-                                switch(notOnLoanChoice){
-                                    case "1":
-                                        do{
-                                            System.out.println();
-                                            displayMembers(members);
-                                            System.out.println("Who is borrowing: ");
-                                            memberChoice = sc.nextLine();
-                                            if (!isInMemberList(members, memberChoice)){
-                                                 printForInvalid();
-                                            }
-                                        } while(!isInMemberList(members, memberChoice));
-                                        //then check if member is eligable to borrow, and go from there!!
-                                        Member theChosenOne = members.getMembers().get((Integer.parseInt(memberChoice))-1);
-                                        if(!(theChosenOne.borrowingQty() < theChosenOne.getDonatedQty())){
-                                            System.out.println("Unfortunately, " + theChosenOne.getName() + " is not eligable to borrow anymore items as users can only borrow as many items they have donated.");
-                                            System.out.println(theChosenOne.getName() + "has borrowed "+ theChosenOne.borrowingQty()+ " items, and has donated " + theChosenOne.getDonatedQty() + " items.");
-                                            System.out.println("Please either return an item or donate first!");
-                                        }
-                                        else{
-                                            theChosenOne.lend(selectedItem);
-                                            selectedItem.loanTo(theChosenOne);
-                                            selectedItem.getOnLoanTo();
-                                            System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
-                                            System.out.println("Don't forget to return it!");
-                                        }
-
-                                        break;
-                                    default:
-                                        System.out.println("please enter a valid input!");
-                                }
-                            } while((!notOnLoanChoice.equals("0")) && selectedItem.isAvailable());
-                            
+                            //if item is available
+                            processAvailableItem(selectedItem, members);
                         }
 
                     }
@@ -658,6 +614,52 @@ public class ISA {
             }
         
     }
+    
+    
+    
+    private static void processAvailableItem(Item selectedItem, MemberCollection members)
+    {
+        String notOnLoanChoice;
+        String memberChoice;
+        do{
+            System.out.println(selectedItem.getTitle() + " is available!");
+            System.out.println("Press 1 to borrow " + selectedItem.getTitle());
+            System.out.println("Press 0 to return to the menu");
+            notOnLoanChoice = sc.nextLine();
+
+            switch(notOnLoanChoice){
+                case "1":
+                    do{
+                        System.out.println();
+                        displayMembers(members);
+                        System.out.println("Who is borrowing: ");
+                        memberChoice = sc.nextLine();
+                        if (!isInMemberList(members, memberChoice)){
+                             printForInvalid();
+                        }
+                    } while(!isInMemberList(members, memberChoice));
+                    //then check if member is eligable to borrow, and go from there!!
+                    Member theChosenOne = members.getMembers().get((Integer.parseInt(memberChoice))-1);
+                    if(!(theChosenOne.borrowingQty() < theChosenOne.getDonatedQty())){
+                        System.out.println("Unfortunately, " + theChosenOne.getName() + " is not eligable to borrow anymore items as users can only borrow as many items they have donated.");
+                        System.out.println(theChosenOne.getName() + " has borrowed "+ theChosenOne.borrowingQty()+ " items, and has donated " + theChosenOne.getDonatedQty() + " items.");
+                        System.out.println("Please either return an item or donate first!");
+                    }
+                    else{
+                        theChosenOne.lend(selectedItem);
+                        selectedItem.loanTo(theChosenOne);
+                        selectedItem.getOnLoanTo();
+                        System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
+                        System.out.println("Don't forget to return it!");
+                    }
+
+                    break;
+                default:
+                    System.out.println("please enter a valid input!");
+            }
+        } while((!notOnLoanChoice.equals("0")) && selectedItem.isAvailable());
+    }
+    
     
     public static void updateTitle(Item item){
         String newTitle;
