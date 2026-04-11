@@ -464,6 +464,7 @@ public class ISA {
                         
                         items.addBook(BookTitle, author, donator, bookLanguage, isbn);
                         System.out.println( BookTitle + " added!");
+                        break;
                         
                     case "2":
                         System.out.println("Adding a DVD:");
@@ -501,20 +502,20 @@ public class ISA {
                         int donateNumDVD;
                         
                         while(realMemberDVD){
-                            displayMembers(members);
+                            //displayMembers(members);
                             System.out.println("Enter the number of the donator: ");
 
                             
                             for (int j = 0; j < members.getMembers().size(); j++){ 
                             System.out.println(j+1 + ": " + members.getMembers().get(j).getName()); //prints a number before every entry
                             }
-                            donateChoice = sc.nextLine();
+                            donateChoiceDVD = sc.nextLine();
                             
-                            if(!parseable(donateChoice)){
+                            if(!parseable(donateChoiceDVD)){
                                 printForInvalid();
                             }
                             else{
-                                realMember = false;//breaks the loop
+                                realMemberDVD = false;//breaks the loop
                             }
    
                         }
