@@ -315,6 +315,9 @@ public class ISA {
                         if (member_index < 0 || member_index > member_search.size()){
                         System.out.println("input incorrect");
                         }
+                        else if (member_index == 0){
+                            System.out.println("please enter valid number.");
+                        }
                         else{
                             member_search_loop = false;
                         }
@@ -324,12 +327,14 @@ public class ISA {
                         }
                 }
                     Member member_selected = member_search.get(member_index - 1);
+                    
                     do{
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
+                    System.out.println("3: return to menu");
                     option_ans = sc.nextLine();
-                    if (option_ans.equals("1") || option_ans.equals("2")){
+                    if (option_ans.equals("1") || option_ans.equals("2") ||option_ans.equals("3") ){
                         option_loop = false;
                     }
                     System.out.println();
@@ -391,6 +396,9 @@ public class ISA {
                             }
                         }
                         members.removeMember(member_selected);
+                    }
+                    else if (option_ans.equals("2")){
+                        System.out.println("returing to menu....");
                     }
                 }
                 break;
@@ -531,7 +539,11 @@ public class ISA {
                         donateNumDVD = Integer.parseInt(donateChoiceDVD);
                         Member donatorDVD = members.getMembers().get(donateNumDVD -1);
                         
+                        DVD tmpDVD = new DVD(titleDVD, director, donatorDVD, languageDVD, audioLanguages);
                         items.addDVD(titleDVD, director, donatorDVD, languageDVD, audioLanguages);
+                        
+                        donatorDVD.addDonation(tmpDVD);
+                        
                         System.out.println( titleDVD + " added!");
 
                         }
@@ -737,11 +749,19 @@ public class ISA {
                     } while(!isInMemberList(members, memberChoice));
                     //then check if member is eligable to borrow, and go from there!!
                     Member theChosenOne = members.getMembers().get((Integer.parseInt(memberChoice))-1);
+                    
+                    int allowedToBorrow = theChosenOne.getDonatedQty(); //can only borrow a maximum of five items
+                    if (allowedToBorrow > 5){
+                        allowedToBorrow = 5;
+                    }
+          
                     if(!(theChosenOne.borrowingQty() < theChosenOne.getDonatedQty())){
-                        System.out.println("Unfortunately, " + theChosenOne.getName() + " is not eligable to borrow anymore items as users can only borrow as many items they have donated.");
+                        System.out.println("Unfortunately, " + theChosenOne.getName() + " is not eligable to borrow anymore items"
+                                + " as users can only borrow as many items they have donated up to a limit of 5 .");
                         System.out.println(theChosenOne.getName() + " has borrowed "+ theChosenOne.borrowingQty()+ " items, and has donated " + theChosenOne.getDonatedQty() + " items.");
                         System.out.println("Please either return an item or donate first!");
                     }
+       
                     else{
                         theChosenOne.lend(selectedItem);
                         selectedItem.loanTo(theChosenOne);
