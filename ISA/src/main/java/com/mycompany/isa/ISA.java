@@ -181,7 +181,16 @@ public class ISA {
 
                         System.out.println("Enter the number of the item: ");
                         String itemChoice = sc.nextLine();
-
+                        
+                        //broken input validation 
+                        while (!parseable(itemChoice)) {
+                            for (int i = 0; i < searchResults.size(); i++){ //the begining of an intuative search system
+                            System.out.println(i+1 + ": " + searchResults.get(i).getTitle()); //prints a number before every entry
+                        }
+                            System.out.println("please enter a number!");
+                            itemChoice = sc.nextLine();
+                        }
+                        
                         int numChoice = Integer.parseInt(itemChoice); //turn input into int
 
                         while (!(numChoice >= 1 && numChoice <= searchResults.size())) {
