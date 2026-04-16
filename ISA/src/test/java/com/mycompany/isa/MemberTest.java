@@ -168,5 +168,30 @@ public class MemberTest {
         assertTrue(result.startsWith("Member|Alice Smith|"));
         assertTrue(result.contains("alice@example.com"));
     }
+    
+    /**
+     * test of clearDonator
+     * should be null after clearDonator called
+     */
+    @Test
+    public void testClearDonator(){
+        System.out.println("clearDonator");
+        Book book = new Book("1984", "Orwell", alice, "English", "978-0451524935");
+        book.clearDonator();
+        assertNull(book.getDonator());
+    }
+    
+     /**
+     * test of IsAvailable
+     * should not be available after being loaned
+     */
+    @Test
+    public void testIsAvailableFalseWhenOnLoan(){
+        System.out.println("clearDonator");
+        Book book = new Book("1984", "Orwell", alice, "English", "978-0451524935");
+        book.clearDonator();
+        assertNull(book.getDonator()); 
+    }
+    
 
 }
