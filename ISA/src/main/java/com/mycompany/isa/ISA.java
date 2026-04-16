@@ -459,7 +459,7 @@ public class ISA {
                         int donateNum;
                         
                         while(realMember){
-                            displayMembers(members);
+                            //displayMembers(members);
                             System.out.println("Enter the number of the donator: ");
 
                             
@@ -469,18 +469,34 @@ public class ISA {
                             donateChoice = sc.nextLine();
                             
                             if(!parseable(donateChoice)){
-                                printForInvalid();
+                                printForInvalid(); //checks if input is a number 
+                                continue;
                             }
-                            else{
-                                realMember = false;//breaks the loop
-                            }
+                            
+                           if(Integer.parseInt(donateChoice) > members.getMembers().size() || Integer.parseInt(donateChoice) <= 0 ){
+                               System.out.println("please enter one of the numbers: ");
+                           } 
+                           else {
+                               realMember = false;//breaks the loop 
+                        }
    
                         }
-                        donateNum = Integer.parseInt(donateChoice);
+                        donateNum = Integer.parseInt(donateChoice);//also turn input into number
+                            
                         Member donator = members.getMembers().get(donateNum -1);
                         
                         items.addBook(BookTitle, author, donator, bookLanguage, isbn);
-                        System.out.println( BookTitle + " added!");
+                        System.out.println(donator.getName() + " donated " + BookTitle);
+                        
+                        //debugging - allows us to check if the maximum number of items allowed to rent is correct
+                        int allowedBorrowBook;
+                        if (donator.getDonatedQty() > 5){
+                            allowedBorrowBook = 5;
+                        }
+                        else {
+                            allowedBorrowBook = donator.getDonatedQty();
+                        }
+                        System.out.println(donator.getName() +  "is able to borrow a maximum of "+  allowedBorrowBook);
                         break;
                         
                     case "2":
@@ -531,6 +547,10 @@ public class ISA {
                             if(!parseable(donateChoiceDVD)){
                                 printForInvalid();
                             }
+                          if(Integer.parseInt(donateChoiceDVD) < members.getMembers().size() || Integer.parseInt(donateChoiceDVD) <= 0){ 
+                                System.out.println("please choose from one of the numbers");
+                            
+                            }
                             else{
                                 realMemberDVD = false;//breaks the loop
                             }
@@ -544,7 +564,18 @@ public class ISA {
                         
                         donatorDVD.addDonation(tmpDVD);
                         
-                        System.out.println( titleDVD + " added!");
+                        System.out.println( donatorDVD.getName() + titleDVD + " added!");
+                        
+                        //debugging - allows us to check if the maximum number of items allowed to rent is correct
+                        int allowedBorrowDVD;
+                        if (donatorDVD.getDonatedQty() > 5){
+                            allowedBorrowBook = 5;
+                        }
+                        else {
+                            allowedBorrowBook = donatorDVD.getDonatedQty();
+                        }
+                        System.out.println(donatorDVD.getName() +  "is able to borrow a maximum of "+  allowedBorrowBook);
+                        break;
 
                         }
 
