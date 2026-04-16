@@ -70,6 +70,9 @@ public class ISA {
                     }//have a silly if here, 
                     
                     items.addBook(book);
+                    if (currentMember != null){
+                        currentMember.addDonation(book); //populate donatedItems list on loading
+                    }
 
                 } else if (part[0].equals("DVD")){
                     String[] audioLanguage = part[4].split(",");
@@ -85,6 +88,9 @@ public class ISA {
                         }
                     }
                     items.addDVD(dvd);
+                    if (currentMember != null){
+                        currentMember.addDonation(dvd); //populate donatedItems list on loading
+                    }
                 }
                 
                 
@@ -250,6 +256,11 @@ public class ISA {
 
                                     case "3":
                                         selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
+                                        
+                                        if(selectedItem.getOnLoanTo() != null){
+                                            selectedItem.getDonator().removeDonation(selectedItem);
+                                        }
+                                        
                                         items.removeItem(selectedItem); //remove from collection
                                         System.out.println(selectedItem.getTitle()+" removed from system!");
                                         break;
@@ -572,8 +583,11 @@ public class ISA {
                             
                             if(!parseable(donateChoiceDVD)){
                                 printForInvalid();
+                                continue; //skip rest of loop if input is invalid
                             }
-                          if(Integer.parseInt(donateChoiceDVD) < members.getMembers().size() || Integer.parseInt(donateChoiceDVD) <= 0){ 
+                            
+                            //changed < to > (it made it loop forever)
+                          if(Integer.parseInt(donateChoiceDVD) > members.getMembers().size() || Integer.parseInt(donateChoiceDVD) <= 0){
                                 System.out.println("please choose from one of the numbers");
                             
                             }
