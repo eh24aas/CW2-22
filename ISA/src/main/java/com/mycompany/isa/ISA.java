@@ -501,6 +501,9 @@ public class ISA {
                             
                         Member donator = members.getMembers().get(donateNum -1);
                         
+                        Book tempBook = new Book(BookTitle, author, donator, bookLanguage, isbn);
+                        donator.addDonation(tempBook);
+                        
                         items.addBook(BookTitle, author, donator, bookLanguage, isbn);
                         System.out.println(donator.getName() + " donated " + BookTitle);
                         
@@ -692,7 +695,7 @@ public class ISA {
 
                         
                     default:
-                        System.out.println("please enter a digit between 1 and 5");
+                        System.out.println("please enter one of the options");
                         
                       
                 }
@@ -769,7 +772,7 @@ public class ISA {
                 
                 
             }
-        
+        System.out.println(""); 
     }
    
     private static void processAvailableItem(Item selectedItem, MemberCollection members, Collection items)
@@ -779,7 +782,7 @@ public class ISA {
         boolean breakAvaililbleLoop = true;
         do{
             System.out.println(selectedItem.getTitle() + " is available!");
-            System.out.println("Press 1 to borrow " + selectedItem.getTitle());
+            System.out.println("Press 1 to lend " + selectedItem.getTitle());
             System.out.println("Press 2 to update "+ selectedItem.getTitle());
             System.out.println("Press 3 to remove "+ selectedItem.getTitle());
             System.out.println("Press 0 to return to the menu");
@@ -805,7 +808,7 @@ public class ISA {
                         allowedToBorrow = 5;
                     }
           
-                    if(!(theChosenOne.borrowingQty() < theChosenOne.getDonatedQty())){
+                    if(!(theChosenOne.borrowingQty() < allowedToBorrow)){
                         System.out.println("Unfortunately, " + theChosenOne.getName() + " is not eligable to borrow anymore items"
                                 + " as users can only borrow as many items they have donated up to a limit of 5 .");
                         System.out.println(theChosenOne.getName() + " has borrowed "+ theChosenOne.borrowingQty()+ " items, and has donated " + theChosenOne.getDonatedQty() + " items.");
@@ -816,7 +819,7 @@ public class ISA {
                         theChosenOne.lend(selectedItem);
                         selectedItem.loanTo(theChosenOne);
                         selectedItem.getOnLoanTo();
-                        System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
+                        System.out.println(theChosenOne.getName() + " has been lent " + selectedItem.getTitle() + "!");
                         System.out.println("Don't forget to return it!");
                         breakAvaililbleLoop = false;
                     }
@@ -905,7 +908,7 @@ public class ISA {
         else{        
             int i = 1;
             for (Member member: members.getMembers()){
-                System.out.println(i + ": " + member.toString());
+                System.out.println(i + ": " + member.getName());
                 i++;
             }
         }
