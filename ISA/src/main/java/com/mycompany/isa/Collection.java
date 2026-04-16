@@ -18,8 +18,8 @@ public class Collection {
     };
     
     
-    public void addBook(String title, String author, Member donator, String language, String isbn){
-        Book book = new Book(title, author, donator, language, isbn);
+    public void addBook(String title, String author, Member donatedby, String language, String isbn){
+        Book book = new Book(title, author, donatedby, language, isbn);
         items.add(book);
     }
     
