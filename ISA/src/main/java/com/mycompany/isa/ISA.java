@@ -12,6 +12,8 @@ import java.util.InputMismatchException;
 
 
 
+
+
 /**
  *
  * @author elean
@@ -298,8 +300,14 @@ public class ISA {
                 
                 for (Member member : member_search) {
                     i = i + 1;
-                    System.out.println(i + ": " + member);
+                    System.out.println(i + ": " + member.getName());
                     System.out.println("borrowing number: " + member.borrowingQty());
+                    int maxBorrow = member.getDonatedQty();
+                    if (maxBorrow >= 5){
+                        maxBorrow = 5;
+                    }
+                    maxBorrow = maxBorrow - member.borrowingQty();//check maximuum number of items aloowed to borrow 
+                    System.out.println("maximum items allowed to borrow " + maxBorrow );
                     for (Item item : member.getLoanItems()) {
                         System.out.println(item.getTitle());
                     }
@@ -768,12 +776,15 @@ public class ISA {
     {
         String notOnLoanChoice;
         String memberChoice;
+        boolean breakAvaililbleLoop = true;
         do{
             System.out.println(selectedItem.getTitle() + " is available!");
             System.out.println("Press 1 to borrow " + selectedItem.getTitle());
             System.out.println("Press 2 to update "+ selectedItem.getTitle());
+            System.out.println("Press 3 to remove "+ selectedItem.getTitle());
             System.out.println("Press 0 to return to the menu");
             notOnLoanChoice = sc.nextLine();
+            
 
             switch(notOnLoanChoice){
                 case "1":
@@ -807,16 +818,32 @@ public class ISA {
                         selectedItem.getOnLoanTo();
                         System.out.println(theChosenOne.getName() + " has successsfully borrowed " + selectedItem.getTitle() + "!");
                         System.out.println("Don't forget to return it!");
+                        breakAvaililbleLoop = false;
                     }
                     break;
                     
                 case "2":
                     updateItem(items,members,selectedItem);
+                    breakAvaililbleLoop = false;
                     break;
+                    
+                case "3":
+                    System.out.println("remove item selected");
+                    if (!selectedItem.isAvailable()){
+                        selectedItem.getOnLoanTo().returnItem(selectedItem); //removing from members borrowed list
+                    }
+                    items.removeItem(selectedItem); //remove from collection
+                    System.out.println(selectedItem.getTitle()+" removed from system!");
+                    breakAvaililbleLoop = false;
+                    break;
+                    
                 default:
                     System.out.println("please enter a valid input!");
+                    
+               
+                    
             }
-        } while((!notOnLoanChoice.equals("0")) && selectedItem.isAvailable());
+        } while((!notOnLoanChoice.equals("0")) && breakAvaililbleLoop);
     }
     
     
