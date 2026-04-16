@@ -301,27 +301,20 @@ public class ISA {
                 for (Member member : member_search) {
                     i = i + 1;
                     System.out.println(i + ": " + member.getName());
-                    System.out.println("borrowing number: " + member.borrowingQty());
-                    int maxBorrow = member.getDonatedQty();
-                    if (maxBorrow >= 5){
-                        maxBorrow = 5;
-                    }
-                    maxBorrow = maxBorrow - member.borrowingQty();//check maximuum number of items aloowed to borrow 
-                    System.out.println("maximum items allowed to borrow " + maxBorrow );
-                    for (Item item : member.getLoanItems()) {
-                        System.out.println(item.getTitle());
-                    }
+                    
                 }
                 
                 if (member_search.isEmpty()){
                     System.out.println("Can't find any member");
-                    sc.nextLine();
+                    continue;
+                    //sc.nextLine();
                 }
                 if (!member_search.isEmpty()){
                     
                     
                     while(member_search_loop){
                     try{
+                        System.out.println("");
                         System.out.print("Which member do you want to select? ");
                         member_index = sc.nextInt();
                         sc.nextLine();
@@ -340,8 +333,21 @@ public class ISA {
                         }
                 }
                     Member member_selected = member_search.get(member_index - 1);
-                    
+                    System.out.println("");
                     do{
+                        System.out.println(member_selected);
+                        int maxBorrow = member_selected.getDonatedQty();
+                    if (maxBorrow >= 5){
+                        maxBorrow = 5;
+                    }
+                    maxBorrow = maxBorrow - member_selected.borrowingQty();//check maximuum number of items aloowed to borrow 
+                    System.out.println("maximum items allowed to borrow " + maxBorrow );
+                    System.out.println("borrowing number: " + member_selected.borrowingQty());
+                        System.out.println("items borrowing:");
+                    for (Item item : member_selected.getLoanItems()) {
+                        System.out.println(item.getTitle());
+                    }
+                        System.out.println("");
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
@@ -368,41 +374,42 @@ public class ISA {
                             case "1":
                                 System.out.print("Type the email: ");
                                 String member_email = sc.nextLine();
-                                for (Member member: members.getMembers()){
-                                    if (member.getEmail().equals(member_selected.getEmail())){
-                                    member.setEmail(member_email);}
-                                    System.out.println(member);
+                           
+                                    
+                                    member_selected.setEmail(member_email);
+                                    System.out.println("changed to: "+member_selected.getEmail());
                                     update_loop = false;
-                                }
+                                
                                 
                                 break;
                             case "2":
                                 System.out.print("Type the name: ");
                                 String member_name = sc.nextLine();
-                                for (Member member: members.getMembers()){
-                                    if (member.getName().equals(member_selected.getName())){
-                                    member.setName(member_name);}
-                                    System.out.println(member);
+                              
+                                    member_selected.setName(member_name);
+                                    System.out.println("changed to: "+member_selected.getName());
                                     update_loop = false;
-                                }
+                                
                                 break;
                             case "3":
                                 System.out.print("Type the address: ");
                                 String member_address = sc.nextLine();
-                                for (Member member: members.getMembers()){
-                                    if (member.getAddress().equals(member_selected.getAddress())){
-                                    member.setAddress(member_address);}
-                                    System.out.println(member);
+        
+                                    member_selected.setAddress(member_address);
+                                    System.out.println("changed to: "+member_selected.getAddress());
                                     update_loop = false;
-                                }
+                                
                                 break;
                             default:
                                 System.out.println("Please enter a valid input!");
                         }
                         }while(update_loop);
+                        System.out.println("");
                         
                     }
                     else if (option_ans.equals("2")){
+                        System.out.println("remove member selected");
+                        System.out.println(member_selected+" removed");
                         for (Item item:items.getItems()){
                             if(item.getDonator() == member_selected){
                                 item.clearDonator();
