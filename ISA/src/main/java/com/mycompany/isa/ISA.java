@@ -286,8 +286,13 @@ public class ISA {
                 int member_index = 0;
                 String option_ans = "";
                 System.out.println("Member you want to search:");
-                String ans = sc.next();
+                String ans = sc.nextLine();
                 System.out.println();
+                while (ans.isBlank()){
+                    System.out.println("Please enter the member you want to search for:");
+                    ans = sc.nextLine();
+                    System.out.println();
+                }
                 ArrayList<Member> member_search = members.searchMember(ans);
                 int i = 0;
                 
@@ -309,7 +314,7 @@ public class ISA {
                     
                     while(member_search_loop){
                     try{
-                        System.out.print("Which member you want to select? ");
+                        System.out.print("Which member do you want to select? ");
                         member_index = sc.nextInt();
                         sc.nextLine();
                         if (member_index < 0 || member_index > member_search.size()){
