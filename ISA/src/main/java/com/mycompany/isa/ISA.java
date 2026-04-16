@@ -342,6 +342,9 @@ public class ISA {
                     if (option_ans.equals("1") || option_ans.equals("2") ||option_ans.equals("3") ){
                         option_loop = false;
                     }
+                    else if (option_ans.isBlank()){
+                        System.out.println("please enter valid number.");
+                    }
                     System.out.println();
                     }while(option_loop);
                     if (option_ans.equals("1")){
