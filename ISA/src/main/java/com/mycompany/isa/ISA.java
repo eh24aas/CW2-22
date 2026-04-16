@@ -518,7 +518,7 @@ public class ISA {
                         
                         String director;
                         do{
-                            System.out.println("please enter the author:");
+                            System.out.println("please enter the director:");
                             director = sc.nextLine();    
                         } while(director.isBlank());
                         
@@ -530,7 +530,7 @@ public class ISA {
                         
                         String newLanguageInput;
                         do{
-                            System.out.println("Please enter the the list a available languages, "
+                            System.out.println("Please enter the list of available languages, "
                                     + "separated by a comma.");
                             newLanguageInput = sc.nextLine();
                         } while(newLanguageInput.isEmpty());
