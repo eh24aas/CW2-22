@@ -66,6 +66,9 @@ abstract class Item {
         return this.onLoanTo;
     }
     
+    @Override
+    public abstract String toString(); //forces Book and DVD to implement it
+    
     
 }
 
