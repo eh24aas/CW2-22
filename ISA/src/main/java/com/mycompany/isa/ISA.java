@@ -617,7 +617,7 @@ public class ISA {
                         else {
                             allowedBorrowBook = donatorDVD.getDonatedQty();
                         }
-                        System.out.println(donatorDVD.getName() +  "is able to borrow a maximum of "+  allowedBorrowBook);
+                        System.out.println(donatorDVD.getName() +  " is able to borrow a maximum of "+  allowedBorrowBook);
                         break;
 
                         }
