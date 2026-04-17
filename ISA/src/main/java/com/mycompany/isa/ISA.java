@@ -71,7 +71,8 @@ public class ISA {
                     
                     items.addBook(book);
                     if (currentMember != null){
-                        currentMember.addDonation(book); //populate donatedItems list on loading
+                        currentMember.addDonation(book); //populate donatedItems list on loan 
+                        currentMember.decDonatedQty();
                     }
 
                 } else if (part[0].equals("DVD")){
@@ -83,6 +84,7 @@ public class ISA {
                             if (member.getEmail().equals(part[5])){ //part 5 being the email of borrower
                                 dvd.loanTo(member);
                                 member.lend(dvd);
+                                
                                 break;
                             }
                         }
@@ -90,6 +92,7 @@ public class ISA {
                     items.addDVD(dvd);
                     if (currentMember != null){
                         currentMember.addDonation(dvd); //populate donatedItems list on loading
+                        currentMember.decDonatedQty();
                     }
                 }
                 
@@ -129,8 +132,7 @@ public class ISA {
     }
     
     
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) {        
         System.out.println("Starting program!");
         System.out.println("");
         
@@ -359,6 +361,7 @@ public class ISA {
                         System.out.println(item.getTitle());
                     }
                         System.out.println("");
+                 
                     System.out.println("please select an option: ");
                     System.out.println("1: update member");
                     System.out.println("2: remove member");
