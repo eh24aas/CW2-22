@@ -26,6 +26,7 @@ public class ISA {
     
     public static void initFile(Collection items, MemberCollection members, String fileName){
         File file = new File(fileName);
+        System.out.println("loading from "+ fileName+ "...");
         try (Scanner scanner = new Scanner(file)){
             while(scanner.hasNextLine()){
                 String data = scanner.nextLine();
@@ -355,7 +356,7 @@ public class ISA {
                     }
                     maxBorrow = maxBorrow - member_selected.borrowingQty();//check maximuum number of items aloowed to borrow 
                     System.out.println("maximum items allowed to borrow " + maxBorrow );
-                    System.out.println("borrowing number: " + member_selected.borrowingQty());
+                    System.out.println("number of items borrowing: " + member_selected.borrowingQty());
                         System.out.println("items borrowing:");
                     for (Item item : member_selected.getLoanItems()) {
                         System.out.println(item.getTitle());
@@ -448,7 +449,7 @@ public class ISA {
                 System.out.print("Type the email of the member: ");
                 String member_email = sc.nextLine();
                 members.addMember(member_name, member_address, member_email, 0);
-                System.out.println("Member added");
+                System.out.println(member_name+ " added");
                 break;
                 
             case "4":
@@ -536,7 +537,8 @@ public class ISA {
                         else {
                             allowedBorrowBook = donator.getDonatedQty();
                         }
-                        System.out.println(donator.getName() +  "is able to borrow a maximum of "+  allowedBorrowBook);
+                        System.out.println(donator.getName() +  " is able to borrow a maximum of "+  allowedBorrowBook + "items");
+                        System.out.println("");
                         break;
                         
                     case "2":
@@ -607,7 +609,7 @@ public class ISA {
                         
                         donatorDVD.addDonation(tmpDVD);
                         
-                        System.out.println( donatorDVD.getName() + titleDVD + " added!");
+                        System.out.println( donatorDVD.getName() + " added " + titleDVD);
                         
                         //debugging - allows us to check if the maximum number of items allowed to rent is correct
                         int allowedBorrowDVD;
@@ -617,7 +619,8 @@ public class ISA {
                         else {
                             allowedBorrowBook = donatorDVD.getDonatedQty();
                         }
-                        System.out.println(donatorDVD.getName() +  " is able to borrow a maximum of "+  allowedBorrowBook);
+                        System.out.println(donatorDVD.getName() +  " is able to borrow a maximum of "+  allowedBorrowBook + "items");
+                        System.out.println("");
                         break;
 
                         }
@@ -864,6 +867,10 @@ public class ISA {
                     breakAvaililbleLoop = false;
                     break;
                     
+                case "0":
+                    System.out.println("returning to menu..");
+                    breakAvaililbleLoop = false;
+                    
                 default:
                     System.out.println("please enter a valid input!");
                     
@@ -871,6 +878,7 @@ public class ISA {
                     
             }
         } while((!notOnLoanChoice.equals("0")) && breakAvaililbleLoop);
+        System.out.println("");
     }
     
     
