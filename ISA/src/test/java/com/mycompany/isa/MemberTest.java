@@ -187,10 +187,10 @@ public class MemberTest {
      */
     @Test
     public void testIsAvailableFalseWhenOnLoan(){
-        System.out.println("clearDonator");
+        System.out.println("isAvailable - false on loan");
         Book book = new Book("1984", "Orwell", alice, "English", "978-0451524935");
-        book.clearDonator();
-        assertNull(book.getDonator()); 
+        book.loanTo(bob);
+        assertFalse(book.isAvailable()); 
     }
     
 
